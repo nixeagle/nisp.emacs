@@ -1,0 +1,36 @@
+
+* Worth my while
+
+*** How to setup emacs + screen
+    http://www.emacswiki.org/emacs/GnuScreen
+
+
+*** Multi user screen
+    http://aperiodic.net/screen/multiuser
+
+
+* Debian
+*** Packages to think about installing
+    - [ ] buildbot
+    - [ ] debram
+    - [ ] debtree
+    - [ ] faketime
+
+
+
+*** Neat packages installed, check them out
+    - [ ] devscripts-el
+    - [ ] fakeroot-ng
+    - [ ] pbuilder - create and maintain chroot environment
+    - [ ] lintian - lint for .deb
+    - [ ] dhelp - search debian documentation locally.
+    - [ ] elib - helper for elisp programs.
+
+*** suggested installed, check out
+    - [ ] catdvi
+    - [ ] bison
+    - [ ] debconf-utils
+    - [ ] flex
+    - [ ] gnuplot
+    - [ ] ri - commandline way to ask about ruby funcs and such
+    - [ ] iso-codes
