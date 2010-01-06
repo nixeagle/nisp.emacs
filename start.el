@@ -1,17 +1,28 @@
+;;;;;;; Nisp start file.
+;;;;;;; Copyright (c) 2010 Nixeagle
+;;;;;;; reuse is granted under GPLv3 or later
 
+;;;; "Bootstrap"
+;;;We have to setup where we are in relation to the file system before
+;;;much anything else can be done. This file is what is to be required
+;;;from .emacs or .emacs.d/init.el
+;;;
+;;;What we do is make it possible to generate a load path from here out
+;;;and then go load nisp-load-helper which defines more utilities
+;;;related to loading emacs files.
 (defvar *nisp-load-path* "~/.emacs.d/nisp.emacs"
   "Default base for nisp.
 
 If the repository is cloned to another path, change this to
 reference the root project directory of nisp.")
 
-(defun make-nisp-path (&optional file-or-subdir)
+(defun nisp-make-path (&optional file-or-subdir)
   "Prepend FILE-OR-SUBDIR with base for nisp."
   (concat (file-name-as-directory *nisp-load-path*)
           file-or-subdir))
 
 ;;; Set and load emacs customize settings.
-(setq custom-file (make-nisp-path "custom/my-custom.el"))
+(setq custom-file (nisp-make-path "custom/my-custom.el"))
 (load custom-file)
 
 ;;; Setup some load paths
@@ -21,8 +32,8 @@ reference the root project directory of nisp.")
     (add-to-list 'load-path directory)))
 
 (nisp-add-to-load-path *nisp-load-path*)
-(nisp-add-to-load-path (make-nisp-path "my"))
-(nisp-add-to-load-path (make-nisp-path "3rd-party/jwiegley-magit"))
+(nisp-add-to-load-path (nisp-make-path "my"))
+(nisp-add-to-load-path (nisp-make-path "3rd-party/jwiegley-magit"))
 
 
 ;;;; Requires
