@@ -21,16 +21,16 @@ reference the root project directory of nisp.")
   (concat (file-name-as-directory *nisp-load-path*)
           file-or-subdir))
 
-;;; Set and load emacs customize settings.
-(setq custom-file (nisp-make-path "custom/my-custom.el"))
-(load custom-file)
-
-;;; Setup some load paths
 (defun nisp-add-to-load-path (directory)
   "Add DIRECTORY to `load-path' after checking it exists."
   (when (file-directory-p directory)
     (add-to-list 'load-path directory)))
 
+;;; Set and load emacs customize settings.
+(setq custom-file (nisp-make-path "custom/my-custom.el"))
+(load custom-file)
+
+;;; Setup some load paths
 (nisp-add-to-load-path *nisp-load-path*)
 (nisp-add-to-load-path (nisp-make-path "my"))
 (nisp-add-to-load-path (nisp-make-path "3rd-party/jwiegley-magit"))
