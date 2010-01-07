@@ -5,6 +5,9 @@
 *** TODO Install emacs-goodies-el
     Needed for htmlize.el
 
+*** TODO Gitsum needs git-status
+    Can't seem to split a diff without it.
+
 * Worth my while
 
 *** How to setup emacs + screen
