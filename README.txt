@@ -1,0 +1,33 @@
+                               nisp.emacs
+                               ==========
+
+
+
+This is a combination of my .emacs and useful libraries intended for
+others. Right now there really is no clear distinction and there won't
+be for a few days. I hope to release v0.1 in a few days.
+
+I have rougly 3,000 lines of emacs lisp that is right now very
+unorganized but some of it implements new functionality others might
+like to try. Those libraries will aspire to meet most GNU emacs coding
+conventions and will be listed below at the release of v0.1. However
+please note that internal variables (defvar, not (defcustom, tend to be
+annotated in the common lisp style. eg `*foo*' instead of `foo'. As
+these are internal variables and are not intended to be user visible I
+have no qualms with breaking this particular style convention. The vast
+majority of the others I know about however are followed.
+
+Finally please note that anything under github-forks is a fork of an
+existing project that I forked for the intent of using git submodules
+and carrying on my own development and integration of patches/forks from
+other github forks.
+
+Please send bug reports to i@nixeagle.org labeled clearly as such.
+
+Table of Contents
+=================
+1 Libraries 
+
+
+1 Libraries 
+~~~~~~~~~~~~
