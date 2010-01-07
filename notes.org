@@ -8,6 +8,10 @@
 *** TODO Gitsum needs git-status
     Can't seem to split a diff without it.
 
+*** TODO Define different keys for Console and X :keymap:elisp:
+    The problem is super, hyper and alt are not usable in a console.
+    [[file:my/my-keymap.el]]
+
 * Worth my while
 
 *** How to setup emacs + screen
