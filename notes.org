@@ -1,4 +1,10 @@
 
+* tasks
+*** TODO Check that git is installed                           :elisp:nisp:
+    Elisp needs to verify that git is actually there.
+*** TODO Install emacs-goodies-el
+    Needed for htmlize.el
+
 * Worth my while
 
 *** How to setup emacs + screen
@@ -7,6 +13,7 @@
 
 *** Multi user screen
     http://aperiodic.net/screen/multiuser
+
 
 
 * Debian
@@ -25,6 +32,7 @@
     - [ ] lintian - lint for .deb
     - [ ] dhelp - search debian documentation locally.
     - [ ] elib - helper for elisp programs.
+    - [ ] dbtoepub - converter thingie to ebook
 
 *** suggested installed, check out
     - [ ] catdvi
@@ -34,3 +42,21 @@
     - [ ] gnuplot
     - [ ] ri - commandline way to ask about ruby funcs and such
     - [ ] iso-codes
+
+*** Emacs stuff to think about
+  - [ ] bbdb
+  - [ ] apel
+  - [ ] auctex
+  - [ ] cmucl-source
+  - [ ] colordiff - color diff output
+  - [ ] darcsum
+  - [ ] devhelp - help with dev stuff, supposed to have emacs
+    integration
+  - [ ] docbook2x
+
+***** Dictonary stuff
+  - [ ] dictem
+  - [ ] dictionary-el
+
+* Sid
+  - [ ] tagcoll - analyze tag collections.
