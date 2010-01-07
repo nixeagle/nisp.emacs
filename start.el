@@ -118,3 +118,5 @@ this to the empty list.")
 
 ;;; Gitsum
 (require 'gitsum)
+
+(require 'nisp-erc-cmd)
