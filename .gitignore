@@ -1,1 +1,4 @@
 /custom/
+
+#ignore custom slime (from cvs)
+/slime/
