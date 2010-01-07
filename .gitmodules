@@ -1,3 +1,6 @@
 [submodule "3rd-party/jwiegley-magit"]
 	path = 3rd-party/jwiegley-magit
 	url = git://github.com/jwiegley/magit.git
+[submodule "github-forks/gitsum"]
+	path = github-forks/gitsum
+	url = ../gitsum
