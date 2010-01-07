@@ -5,8 +5,9 @@
 ;;;; Customize stuff
 ;;; We do the main nisp customization group and variables first. Little
 ;;; to no chance of errors here.
-(defconst *nisp-version* "0.0.13"
+(defconst *nisp-version* "0.0.14"
   "Nusp version.")
+
 (defvar *nisp-root-parent-group* 'emacs
   "*Parent group of the group `nisp'.
 
@@ -17,11 +18,9 @@ elements. The normal user setting for this will likely be
 
 (defgroup nisp nil
   "Nixeagle's lisp."
-  :version "0.0.13"                     
   :group 'emacs)
 (defgroup nisp-paths nil
   "Load path settings."
-  :version "0.0.13"
   :group 'nisp)
 
 ;;;; "Bootstrap"
