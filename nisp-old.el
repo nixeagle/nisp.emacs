@@ -145,5 +145,31 @@ IF TARGET is nil and SERVER-NAME is passed, return related server buffer"
 
 (defalias 'my-erc-connect-debian 'my-erc-connect-oftc)
 
+(setq gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f %* %B%s%)\n"
+          gnus-user-date-format-alist '((t . "%d.%m.%Y %H:%M"))
+          gnus-sum-thread-tree-false-root ""
+          gnus-sum-thread-tree-indent " "
+          gnus-sum-thread-tree-root ""
+          gnus-sum-thread-tree-leaf-with-other "├► "
+          gnus-sum-thread-tree-single-leaf "╰► "
+          gnus-sum-thread-tree-vertical "│")
+
+
+
+(defun next-flymake-error ()
+      (interactive)
+      (let ((err-buf nil))
+        (condition-case err
+            (setq err-buf (next-error-find-buffer))
+          (error))
+        (if err-buf
+            (next-error)
+            (progn
+              (flymake-goto-next-error)
+              (let ((err (get-char-property (point) 'help-echo)))
+                (when err
+                  (message err)))))))
+
+(global-set-key (quote [select]) (quote move-end-of-line))
 
 (provide 'nisp-old)
