@@ -2,7 +2,7 @@
 * tasks
 *** TODO Check that git is installed                           :elisp:nisp:
     Elisp needs to verify that git is actually there.
-*** TODO Install emacs-goodies-el
+*** DONE Install emacs-goodies-el
     Needed for htmlize.el
 
 *** TODO Gitsum needs git-status
@@ -11,6 +11,11 @@
 *** TODO Define different keys for Console and X :keymap:elisp:
     The problem is super, hyper and alt are not usable in a console.
     [[file:my/my-keymap.el]]
+
+*** BUG (nisp-reload-site-file) Does not refresh system paths
+    When I wrote this, it was intended to reload system paths so that
+    installing new things in debian did not force me to restart emacs.
+
 
 * Worth my while
 
