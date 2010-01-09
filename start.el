@@ -83,13 +83,17 @@ this to the empty list.")
 (require 'my-keymap)                    ; Set keys up now.
 
 (nisp-add-to-load-path (nisp-make-path "3rd-party/jwiegley-magit"))
+(nisp-add-to-load-path (nisp-make-path "3rd-party/rudel"))
+(nisp-add-to-load-path (nisp-make-path "3rd-party/rudel/jupiter"))
+(nisp-add-to-load-path (nisp-make-path "3rd-party/rudel/obby"))
 (nisp-add-to-load-path (nisp-make-path "slime"))
 (nisp-add-to-load-path (nisp-make-path "slime/contrib"))
 (nisp-add-to-load-path (nisp-make-path "github-forks/gitsum"))
 
 ;;;; Requires
-;;; Extra load tools
+;;; Extra load toolsx
 (require 'nisp-load-helper)
+(require 'nisp-require-system-libraries)
 
 ;;; Include and turn on ido-mode
 (require 'ido)
