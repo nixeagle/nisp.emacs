@@ -89,6 +89,7 @@ this to the empty list.")
 (nisp-add-to-load-path (nisp-make-path "slime"))
 (nisp-add-to-load-path (nisp-make-path "slime/contrib"))
 (nisp-add-to-load-path (nisp-make-path "github-forks/gitsum"))
+(nisp-add-to-load-path (nisp-make-path "site/main"))
 
 ;;;; Requires
 ;;; Extra load toolsx
@@ -129,3 +130,7 @@ this to the empty list.")
 
 ;;; gnus
 (spam-initialize)
+
+
+;;; Setting up a site
+(require 'my-org-jekyll)
