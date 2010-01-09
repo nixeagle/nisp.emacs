@@ -39,4 +39,7 @@
 
 ;(require 'semantic-gcc)
 
+;;; orgmode
+(require 'org-publish)                  ; For my site
+
 (provide 'nisp-require-system-libraries)
