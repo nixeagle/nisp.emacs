@@ -154,22 +154,6 @@ IF TARGET is nil and SERVER-NAME is passed, return related server buffer"
           gnus-sum-thread-tree-single-leaf "╰► "
           gnus-sum-thread-tree-vertical "│")
 
-
-
-(defun next-flymake-error ()
-      (interactive)
-      (let ((err-buf nil))
-        (condition-case err
-            (setq err-buf (next-error-find-buffer))
-          (error))
-        (if err-buf
-            (next-error)
-            (progn
-              (flymake-goto-next-error)
-              (let ((err (get-char-property (point) 'help-echo)))
-                (when err
-                  (message err)))))))
-
 (global-set-key (quote [select]) (quote move-end-of-line))
 
 (provide 'nisp-old)
