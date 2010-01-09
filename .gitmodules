@@ -4,3 +4,6 @@
 [submodule "github-forks/gitsum"]
 	path = github-forks/gitsum
 	url = ../gitsum
+[submodule "github-forks/jekyll"]
+	path = github-forks/jekyll
+	url = ../jekyll
