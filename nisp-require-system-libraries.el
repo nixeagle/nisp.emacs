@@ -37,6 +37,6 @@
 
 (require 'speedbar)
 
-(require 'semantic-gcc)
+;(require 'semantic-gcc)
 
 (provide 'nisp-require-system-libraries)
