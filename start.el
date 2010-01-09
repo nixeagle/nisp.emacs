@@ -124,3 +124,8 @@ this to the empty list.")
 (require 'gitsum)
 
 (require 'nisp-erc-cmd)
+
+
+
+;;; gnus
+(spam-initialize)
