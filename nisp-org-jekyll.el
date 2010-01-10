@@ -1,10 +1,12 @@
+;;; nisp-org-jekyll -- summary
 ;;; Copyright (c) 2010 Nixeagle
 ;;; Released under GNU GPLv3 or later
-;;;
-;;; The function nisp-jekyll-make-index and
-;;; ....
-;;; came from git://github.com/eschulte/babel-dev.git
-;;; in the file publish.org on [2010-01-09 Sat]
+;;; Commentary:
+;; The function nisp-jekyll-make-index and
+;; ....
+;; came from git://github.com/eschulte/babel-dev.git
+;; in the file publish.org on [2010-01-09 Sat]
+;;; Code:
 
 (defgroup nisp-org-jekyll nil
   "Interaction with the jekyll website thing."
@@ -25,13 +27,20 @@ Please reference http://wiki.github.com/mojombo/jekyll/yaml-front-matter"
 (defconst nisp-org-jekyll-front-matter-end "---\n\n"
   "Bottom or end of the YAML header.")
 
+(defun nisp-add-extension (filename extension)
+  "Add EXTENSION to the end of FILENAME if its not there yet.
+
+FILENAME and EXTENSION both need to be a string.  EXTENSION must
+not start with a leading dot."
+  (if (string= (file-name-extension filename) extension)
+      filename
+    (concat filename "." extension)))
+
 (defun nisp-org-add-org-extension (filename)
-  "Add org-mode extension to FILENAME if it is not there yet.
+  "Add `org-mode' extension to FILENAME if it is not there yet.
 
 FILENAME should be a string."
-  (if (string= (file-name-extension filename) "org")
-      filename
-    (concat filename ".org")))
+  (nisp-add-extension filename "org"))
 
 ;;; From http://github.com/eschulte/babel-dev/blob/master/publish.org
 ;;; (intially) written by Eric Schulte
@@ -116,3 +125,6 @@ FILENAME should be a string."
                     (insert html))
                   (get-buffer org-buffer)))))))
        '(1 2)))))
+
+(provide 'nisp-org-jekyll)
+;;; nisp-org-jekyll.el ends here
