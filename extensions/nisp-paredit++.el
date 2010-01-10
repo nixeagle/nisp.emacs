@@ -9,7 +9,7 @@
 
 (when (fboundp 'paredit-mode)
       (mapc (lambda (hook)
-              (custom-add-frequent-value hook (lambda () (paredit-mode +1))))
+              (custom-add-frequent-value hook 'enable-paredit-mode))
             '(lisp-mode-hook scheme-mode-hook)))
 
 
