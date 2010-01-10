@@ -40,7 +40,6 @@
 ;(require 'semantic-gcc)
 
 ;;; paredit
-(require 'paredit)
 (require 'nisp-paredit++)
 
 
