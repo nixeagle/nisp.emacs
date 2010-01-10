@@ -42,6 +42,27 @@ not start with a leading dot."
 FILENAME should be a string."
   (nisp-add-extension filename "org"))
 
+(defun nisp-org-jekyll-format-yaml-pair (yaml-pair)
+  "Convert YAML-PAIR to yaml line.
+
+YAML-PAIR needs to be a dotted pair, eg:
+  '(car . cdr)"
+  (format "%s: %s" (car yaml-pair) (cdr yaml-pair)))
+
+(defun nisp-org-jekyll-format-yaml (yaml)
+  "Convert YAML to yaml.
+
+YAML should be a list of dotted pairs that can be processed by
+`nisp-org-jekyll-format-yaml-pair'."
+  (mapconcat #'nisp-org-jekyll-format-yaml-pair
+          yaml "\n"))
+
+(defun nisp-org-jekyll-format-frontmatter (dotted-pairs)
+  "Convert DOTTED-PAIRS to jekyll frontmatter."
+  (concat nisp-org-jekyll-front-matter-start
+          (nisp-org-jekyll-format-yaml dotted-pairs)
+          nisp-org-jekyll-front-matter-end))
+
 ;;; From http://github.com/eschulte/babel-dev/blob/master/publish.org
 ;;; (intially) written by Eric Schulte
 (defun nisp-org-jekyll-make-index ()
