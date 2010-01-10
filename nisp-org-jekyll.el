@@ -25,6 +25,14 @@ Please reference http://wiki.github.com/mojombo/jekyll/yaml-front-matter"
 (defconst nisp-org-jekyll-front-matter-end "---\n\n"
   "Bottom or end of the YAML header.")
 
+(defun nisp-org-add-org-extension (filename)
+  "Add org-mode extension to FILENAME if it is not there yet.
+
+FILENAME should be a string."
+  (if (string= (file-name-extension filename) "org")
+      filename
+    (concat filename ".org")))
+
 ;;; From http://github.com/eschulte/babel-dev/blob/master/publish.org
 ;;; (intially) written by Eric Schulte
 (defun nisp-org-jekyll-make-index ()
