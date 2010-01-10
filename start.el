@@ -90,6 +90,7 @@ this to the empty list.")
 (nisp-add-to-load-path (nisp-make-path "slime/contrib"))
 (nisp-add-to-load-path (nisp-make-path "github-forks/gitsum"))
 (nisp-add-to-load-path (nisp-make-path "site/main"))
+(nisp-add-to-load-path (nisp-make-path "extensions"))
 
 ;;;; Requires
 ;;; Extra load toolsx

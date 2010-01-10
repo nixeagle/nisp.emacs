@@ -41,6 +41,8 @@
 
 ;;; paredit
 (require 'paredit)
+(require 'nisp-paredit++)
+
 
 ;;; orgmode
 (require 'org-publish)                  ; For my site
