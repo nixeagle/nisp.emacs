@@ -63,6 +63,16 @@ YAML should be a list of dotted pairs that can be processed by
           (nisp-org-jekyll-format-yaml dotted-pairs)
           nisp-org-jekyll-front-matter-end))
 
+(defun nisp-file-name-buffer-directory (filename &optional extension buffer)
+  "Expand FILENAME adding EXTENSION using BUFFER's directory.
+
+If EXTENSION is nil, no extension is appended."
+  (expand-file-name
+   (or (and extension (nisp-add-extension filename extension))
+       filename)
+   (file-name-directory
+    (buffer-file-name (or buffer (current-buffer))))))
+
 ;;; From http://github.com/eschulte/babel-dev/blob/master/publish.org
 ;;; (intially) written by Eric Schulte
 (defun nisp-org-jekyll-make-index ()
