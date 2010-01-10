@@ -8,6 +8,14 @@
 ;; in the file publish.org on [2010-01-09 Sat]
 ;;; Code:
 
+(defvar nisp-org-jekyll-unit-tests nil
+  "T means test assertions run.")
+(defun nisp-org-jekyll-toggle-tests ()
+  "Toggle unittests for `nisp-org-jekyll'."
+  (interactive)
+  (setq nisp-org-jekyll-unit-tests
+        (not nisp-org-jekyll-unit-tests)))
+
 (defgroup nisp-org-jekyll nil
   "Interaction with the jekyll website thing."
   :group 'nisp)
