@@ -24,7 +24,7 @@ Please reference http://wiki.github.com/mojombo/jekyll/yaml-front-matter"
 (defconst nisp-org-jekyll-front-matter-start "---\n"
   "Top of the YAML header.")
 
-(defconst nisp-org-jekyll-front-matter-end "---\n\n"
+(defconst nisp-org-jekyll-front-matter-end "\n---\n\n"
   "Bottom or end of the YAML header.")
 
 (defun nisp-add-extension (filename extension)
