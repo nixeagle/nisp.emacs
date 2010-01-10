@@ -19,6 +19,12 @@ Please reference http://wiki.github.com/mojombo/jekyll/yaml-front-matter"
   :type '(alist)                        ; Fix up customize alist type here.
   :group 'nisp-org-jekyll)
 
+(defconst *nisp-org-jekyll-front-matter-start* "---\n"
+  "Top of the YAML header.")
+
+(defconst *nisp-org-jekyll-front-matter-end* "---\n\n"
+  "Bottom or end of the YAML header.")
+
 ;;; From http://github.com/eschulte/babel-dev/blob/master/publish.org
 ;;; (intially) written by Eric Schulte
 (defun nisp-org-jekyll-make-index ()
@@ -35,10 +41,10 @@ Please reference http://wiki.github.com/mojombo/jekyll/yaml-front-matter"
        (setq html (org-export-as-html nil nil nil 'string t nil))
        (with-temp-file (concat file ".html")
          (when yaml-front-matter
-           (insert "---\n")
+           (insert *nisp-org-jekyll-front-matter-start*)
            (mapc (lambda (pair) (insert (format "%s: %s\n" (car pair) (cdr pair))))
                  yaml-front-matter)
-           (insert "---\n\n"))
+           (insert *nisp-org-jekyll-front-matter-end*))
          (insert html)))) '("index" "publish")))
 
 ;;; This is also from:
