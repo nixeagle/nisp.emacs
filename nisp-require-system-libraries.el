@@ -39,6 +39,9 @@
 
 ;(require 'semantic-gcc)
 
+;;; paredit
+(require 'paredit)
+
 ;;; orgmode
 (require 'org-publish)                  ; For my site
 
