@@ -39,7 +39,7 @@ FILENAME should be a string."
   (mapc
    (lambda (file)
      (let ((full-file (expand-file-name
-                       (concat file ".org")
+                       (nisp-org-add-org-extension file)
                        (file-name-directory (buffer-file-name))))
            (yaml-front-matter `(("layout" . "default")
                                 ("title" . ,file)))
