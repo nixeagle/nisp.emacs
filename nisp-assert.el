@@ -20,5 +20,21 @@
 "
            ',s1 ,s1 ',s2 ,s2))
 
+(defmacro nisp-assert-many-string= (single-string &rest strings)
+  "Assert that STRINGS all are `string=' to SINGLE-STRING."
+  (declare (indent 1))
+  (let ((s1 single-string))
+    `(progn ,@(mapcar (lambda (t1)
+                        `(nisp-assert-string= ,s1 ,t1))
+                      strings))))
+
+(defmacro nisp-assert-many (macro-assertion single-form &rest forms)
+  "Assert that FORMS all are MACRO-ASSERTION to SINGLE-FORM."
+  (declare (indent 1))
+  (let ((s1 single-form))
+    `(progn ,@(mapcar (lambda (t1)
+                        (list macro-assertion s1 t1))
+                      forms))))
+
 (provide 'nisp-assert)
 ;;; nisp-assert.el ends here
