@@ -19,11 +19,30 @@
 
 "
            ',s1 ,s1 ',s2 ,s2))
+(defmacro nisp-assert-build-arg-pair (form value)
+  `(cons ',(symbol-value form) ,(symbol-value value)))
 
-(defmacro nisp-assert-build-arg-pairs (&rest args)
+(defmacro nisp-assert-build-arg-pairs (args)
   "Return dotted pairs of ARGS and their results."
-  `(list ,@(mapcar (lambda (x) `(cons ',x ,x)) args)))
+  `(list ,@(mapcar (lambda (x)
+              (nisp-assert-build-arg-pair x x))
+          args)))
 
+(defmacro footest (args)
+  ``(,@(nisp-assert-build-arg-pairs ,args)))
+
+;; (macroexpand '(footest ((+ 1) (+ 1 2))))
+;; (list
+;;  ((+ 1)
+;;   . 1)
+;;  ((+ 1 2)
+;;   . 3))
+
+(macroexpand '(nisp-assert-predicate string= 1 2 3))
+              ;  (format "%s assertion failed: (%s %S)"
+               ;    ,predicate ,predicate
+                   
+)))))
 
 (defun nisp-assert-format-arg (arg value)
   "Format ARG and VALUE as a string.
