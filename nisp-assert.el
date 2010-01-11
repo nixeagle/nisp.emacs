@@ -20,6 +20,12 @@
 "
            ',s1 ,s1 ',s2 ,s2))
 
+(defun nisp-assert-format-arg (arg value)
+  "Format ARG and VALUE as a string.
+
+Remember if ARG is an expression, pass it quoted."
+  (format "[%S => %S]" arg value))
+
 (defmacro nisp-assert-many-string= (single-string &rest strings)
   "Assert that STRINGS all are `string=' to SINGLE-STRING."
   (declare (indent 1))
