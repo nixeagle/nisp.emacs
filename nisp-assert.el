@@ -24,10 +24,10 @@
   "Assert that STRINGS all are `string=' to SINGLE-STRING."
   (declare (indent 1))
   (let ((s1 (gensym)))
-  `(let ((,s1 ,single-string))
-    (progn ,s1 ,@(mapcar (lambda (t1)
-                        `(nisp-assert-string= ,s1 ,t1))
-                      strings)))))
+    `(let ((,s1 ,single-string))
+       (progn ,s1 ,@(mapcar (lambda (t1)
+                              `(nisp-assert-string= ,s1 ,t1))
+                            strings)))))
 
 (defmacro nisp-assert-many (macro-assertion single-form &rest forms)
   "Assert that FORMS all are MACRO-ASSERTION to SINGLE-FORM."
