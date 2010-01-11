@@ -20,6 +20,11 @@
 "
            ',s1 ,s1 ',s2 ,s2))
 
+(defmacro nisp-assert-build-arg-pairs (&rest args)
+  "Return dotted pairs of ARGS and their results."
+  `(list ,@(mapcar (lambda (x) `(cons ',x ,x)) args)))
+
+
 (defun nisp-assert-format-arg (arg value)
   "Format ARG and VALUE as a string.
 
