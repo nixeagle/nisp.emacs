@@ -29,12 +29,14 @@
                           `(nisp-assert-string= ,s1 ,t1))
                         strings)))))
 
-(defmacro nisp-assert-many (macro-assertion single-form &rest forms)  "Assert that FORMS all are MACRO-ASSERTION to SINGLE-FORM."
+(defmacro nisp-assert-many (macro-assertion single-form &rest forms)
+  "Assert that FORMS all are MACRO-ASSERTION to SINGLE-FORM."
   (declare (indent 1))
-  (let ((s1 single-form))
-    `(progn ,@(mapcar (lambda (t1)
-                        (list macro-assertion s1 t1))
-                      forms))))
+  (let ((s1 (gensym)))
+    `(let ((,s1 ,single-form))
+       (progn ,@(mapcar (lambda (t1)
+                          (list macro-assertion s1 t1))
+                        forms)))))
 
 (provide 'nisp-assert)
 ;;; nisp-assert.el ends here
