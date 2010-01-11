@@ -19,13 +19,13 @@
 
 "
            ',s1 ,s1 ',s2 ,s2))
-(defmacro nisp-assert-build-arg-pair (form value)
-  `(cons ',(symbol-value form) ,(symbol-value value)))
+(defmacro nisp-assert-build-arg-pair (form)
+  `(cons ',(symbol-value form) ,(symbol-value form)))
 
 (defmacro nisp-assert-build-arg-pairs (args)
   "Return dotted pairs of ARGS and their results."
   `(list ,@(mapcar (lambda (x)
-              (nisp-assert-build-arg-pair x x))
+              (nisp-assert-build-arg-pair x))
           args)))
 
 (defmacro footest (args)
