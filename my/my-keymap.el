@@ -17,7 +17,13 @@
   (global-set-key [(control ?\c) ?\p]
                   'magit-status)
   (global-set-key [(super ?\p)]
-                  'magit-status))
+                  'magit-status)
+  (global-set-key [(hyper ?\ )]
+                  'slime-selector))
+
+;; C-j is a terrible binding for lisp modes, its normally mapped to
+;; eval-print-last-sexp by the _major_ mode.
+(define-key paredit-mode-map [(control ?\j)] nil)
 
 (my-global-keymap)
 
