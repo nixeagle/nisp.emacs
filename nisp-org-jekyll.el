@@ -8,6 +8,8 @@
 ;; in the file publish.org on [2010-01-09 Sat]
 ;;; Code:
 
+(require 'nsip-assert)
+
 (defvar nisp-org-jekyll-unit-tests nil
   "T means test assertions run.")
 (defun nisp-org-jekyll-toggle-tests ()
@@ -43,6 +45,12 @@ not start with a leading dot."
   (if (string= (file-name-extension filename) extension)
       filename
     (concat filename "." extension)))
+
+(when nisp-org-jekyll-unit-tests
+   (nisp-assert-many-string= (prin1-to-string (random 100))
+    (nisp-add-extension "foo" "org")
+    (nisp-add-extension "foo.org" "org")
+    (nisp-add-extension "foo.org" "orga")))
 
 (defun nisp-org-add-org-extension (filename)
   "Add `org-mode' extension to FILENAME if it is not there yet.
