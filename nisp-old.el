@@ -1,3 +1,23 @@
+(defun my-slime-async-eval (expression ns func)
+  "Eval EXPRESSION in `slime' and pass result to BODY.
+
+Run EXPRESSION in NS. If nil, defaults to whatever is set.
+
+Based off of `slime-eval-async'."
+  (setq my-erc-var-CL-expression (substring-no-properties expression))
+
+  (setq my-erc-var-CL-func func)
+  (slime-eval-async
+    `(swank:eval-and-grab-output ,my-erc-var-CL-expression)
+    (lambda (result)
+      (destructuring-bind (output value) result
+        (funcall my-erc-var-CL-func
+                 my-erc-var-CL-expression
+                 output
+                 value)))
+    ns)
+  nil)
+
 (defun my-recursive-file-regexp (directory regexp)
   "List of files matching REGEXP"
   (let ((results ()))
