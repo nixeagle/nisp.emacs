@@ -7,22 +7,23 @@
 (defun my-global-keymap ()
   "Defines all my global keybindings."
   (interactive)
-  (global-set-key (kbd "C-;")
+  (global-set-key [(control ?\;)]
                   'comment-dwim)
-  (global-set-key (kbd "s-SPC")
+  (global-set-key [(super ?\ )]
                   'ido-switch-buffer)
-  (global-set-key (kbd "s-f")
+  (global-set-key [(super ?\f)]
                   'ido-find-file)
-
   ;;; magit
-  (global-set-key (kbd "C-c p")         ;console
+  (global-set-key [(control ?\c) ?\p]
                   'magit-status)
-  (global-set-key (kbd "s-p")           ;X
-                  'magit-status)
-)
+  (global-set-key [(super ?\p)]
+                  'magit-status))
 
 (my-global-keymap)
 
 (provide 'my-keymap)
+
+
+
 
 ;;; End of file
