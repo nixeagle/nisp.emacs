@@ -79,9 +79,6 @@ this to the empty list.")
 ;;; Setup the rest of the load paths
 (nisp-add-to-load-path nisp-load-path)
 (nisp-add-to-load-path (nisp-make-path "my")) 
-
-(require 'my-keymap)                    ; Set keys up now.
-
 (nisp-add-to-load-path (nisp-make-path "3rd-party/jwiegley-magit"))
 (nisp-add-to-load-path (nisp-make-path "3rd-party/rudel"))
 (nisp-add-to-load-path (nisp-make-path "3rd-party/rudel/jupiter"))
@@ -96,7 +93,6 @@ this to the empty list.")
 ;;; Extra load toolsx
 (require 'nisp-load-helper)
 (require 'nisp-require-system-libraries)
-
 ;;; Include and turn on ido-mode
 (require 'ido)
 (ido-mode 1)
@@ -111,22 +107,25 @@ this to the empty list.")
 (require 'nisp-paste)
 (defalias 'paste-region 'nisp-paste-region)
 
-;;;; Testing
-(require 'inf-lisp)
-(require 'slime)
-(require 'inferior-slime)
-(require 'slime-autodoc)
-
-(slime-setup '(slime-repl 
-               slime-asdf slime-parse
-               slime-fancy))
-
 
 ;;; Gitsum
 (require 'gitsum)
 
 (require 'nisp-erc-cmd)
 
+
+;;;; Testing
+(require 'inf-lisp)
+(require 'slime)
+(require 'inferior-slime)
+(require 'slime-autodoc)
+
+(slime-setup '(slime-repl
+               slime-asdf slime-parse
+               slime-fancy))
+
+(require 'paredit)
+(require 'my-keymap)                    ; Set keys up now.
 
 
 ;;; gnus
