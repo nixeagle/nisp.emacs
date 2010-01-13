@@ -78,7 +78,6 @@ this to the empty list.")
 
 ;;; Setup the rest of the load paths
 (nisp-add-to-load-path nisp-load-path)
-(nisp-add-to-load-path (nisp-make-path "my")) 
 (nisp-add-to-load-path (nisp-make-path "3rd-party/jwiegley-magit"))
 (nisp-add-to-load-path (nisp-make-path "3rd-party"))
 (nisp-add-to-load-path (nisp-make-path "slime"))
