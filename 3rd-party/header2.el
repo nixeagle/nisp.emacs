@@ -10,9 +10,9 @@
 ;; Copyright (C) 1988 Lynn Randolph Slater, Jr.
 ;; Created: Tue Aug  4 17:06:46 1987
 ;; Version: 21.0
-;; Last-Updated: Wed Jan 13 17:36:19 2010 (+0000)
+;; Last-Updated: Wed Jan 13 23:42:16 2010 (+0000)
 ;;           By: James
-;;     Update #: 1711
+;;     Update #: 1712
 ;; URL: http://www.emacswiki.org/cgi-bin/wiki/header2.el
 ;; Keywords: tools, docs, maint, abbrev, local
 ;; Compatibility: GNU Emacs: 20.x, 21.x, 22.x, 23.x
@@ -345,8 +345,7 @@
 
 (defgroup Automatic-File-Header nil
   "File header insertion and updating."
-  :group 'files :group 'editing :group 'convenience :group 'programming
-  :group 'development
+  :group 'files :group 'programming
   :link `(url-link :tag "Send Bug Report"
           ,(concat "mailto:" "drew.adams" "@" "oracle" ".com?subject=\
 header2.el bug: \
@@ -358,8 +357,7 @@ Don't forget to mention your Emacs and library versions."))
           "http://www.emacswiki.org/cgi-bin/wiki/header2.el")
   :link '(url-link :tag "Description"
           "http://www.emacswiki.org/cgi-bin/wiki/AutomaticFileHeaders#header2")
-  :link '(emacs-commentary-link :tag "Commentary" "header2")
-  )
+  :link '(emacs-commentary-link :tag "Commentary" "header2"))
 
 (defcustom header-max 50000
   "*Maximum number of chars to examine for header updating."
