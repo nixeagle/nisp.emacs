@@ -2,3 +2,4 @@
 
 #ignore custom slime (from cvs)
 /slime/
+/3rd-party/rudel/
