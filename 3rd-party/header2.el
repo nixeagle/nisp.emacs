@@ -10,9 +10,9 @@
 ;; Copyright (C) 1988 Lynn Randolph Slater, Jr.
 ;; Created: Tue Aug  4 17:06:46 1987
 ;; Version: 21.0
-;; Last-Updated: Sun Oct 25 09:23:39 2009 (-0700)
-;;           By: dradams
-;;     Update #: 1710
+;; Last-Updated: Wed Jan 13 17:36:19 2010 (+0000)
+;;           By: James
+;;     Update #: 1711
 ;; URL: http://www.emacswiki.org/cgi-bin/wiki/header2.el
 ;; Keywords: tools, docs, maint, abbrev, local
 ;; Compatibility: GNU Emacs: 20.x, 21.x, 22.x, 23.x
@@ -536,7 +536,7 @@ packages."
 
 (defsubst header-maintainer ()
   "Insert \"Maintainer: \" line."
-  (insert header-prefix-string "Maintainer: \n"))
+  (insert header-prefix-string "Maintainer:\n"))
 
 (defun header-copyright ()
   "Insert `header-copyright-notice', unless nil."
@@ -573,7 +573,7 @@ packages."
 
 (defsubst header-version ()
   "Insert lines to record version information."
-  (insert header-prefix-string "Version: \n"))
+  (insert header-prefix-string "Version:\n"))
 
 (defsubst header-sccs ()
   "Insert a line to record SCCS version information."
@@ -581,7 +581,7 @@ packages."
 
 (defsubst header-commentary ()
   "Insert \"Commentary: \" line."
-  (insert (concat (section-comment-start) "Commentary: \n")))
+  (insert (concat (section-comment-start) "Commentary:\n")))
 
 (defsubst header-history ()
   "Insert `header-history-label' into header for use by `make-revision'.
@@ -623,7 +623,7 @@ Without this, `make-revision' inserts `header-history-label' after the header."
 
 ;; Variable `comment-end-p' is free here.  It is bound in `make-header'.
 (defsubst header-code ()
-  "Insert \"Code: \" line."
+  "Insert \"Code:\" line."
   (insert (concat (section-comment-start) "Code:" (and comment-end-p comment-end)
                   "\n\n\n")))
 
@@ -644,12 +644,12 @@ Without this, `make-revision' inserts `header-history-label' after the header."
 (defsubst header-modification-date ()
   "Insert todays date as the time of last modification.
 This is normally overwritten with each file save."
-  (insert header-prefix-string "Last-Updated: \n"))
+  (insert header-prefix-string "Last-Updated:\n"))
 
 (defsubst header-modification-author ()
   "Insert current user's name as the last person who modified the file.
 This is normally overwritten with each file save."
-  (insert header-prefix-string "          By: \n"))
+  (insert header-prefix-string "          By:\n"))
 
 (defsubst header-update-count ()
   "Insert a count of the number of times the file has been saved."
@@ -657,15 +657,15 @@ This is normally overwritten with each file save."
 
 (defsubst header-url ()
   "Insert \"URL: \" line."
-  (insert header-prefix-string "URL: \n"))
+  (insert header-prefix-string "URL:\n"))
 
 (defsubst header-keywords ()
   "Insert \"Keywords: \" line."
-  (insert header-prefix-string "Keywords: \n"))
+  (insert header-prefix-string "Keywords:\n"))
 
 (defsubst header-compatibility ()
   "Insert a \"Compatibility: \" line."
-  (insert header-prefix-string "Compatibility: \n"))
+  (insert header-prefix-string "Compatibility:\n"))
 
 (defsubst header-lib-requires ()
   "Insert list of libraries required by this one."
@@ -675,11 +675,11 @@ This is normally overwritten with each file save."
 
 (defsubst header-status ()
   "Insert a \"Status: \" line."
-  (insert header-prefix-string "Status: \n"))
+  (insert header-prefix-string "Status:\n"))
 
 (defsubst header-toc ()
   "Insert a \"Table of Contents: \" line."
-  (insert header-prefix-string  "Table of Contents: \n" header-prefix-string
+  (insert header-prefix-string  "Table of Contents:\n" header-prefix-string
           "\n"))
 
 (defsubst header-rcs-log ()
