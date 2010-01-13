@@ -6,9 +6,9 @@
 ;; Maintainer:
 ;; Created: Wed Jan 13 17:33:31 2010 (+0000)
 ;; Version:
-;; Last-Updated: Wed Jan 13 23:05:57 2010 (+0000)
+;; Last-Updated: Wed Jan 13 23:16:29 2010 (+0000)
 ;;           By: James
-;;     Update #: 3
+;;     Update #: 4
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -78,7 +78,8 @@ Based off of `slime-eval-async'."
     (insert "=== describe ===\n")
     (let ((c 0))
       (mapc (lambda (x)
-              (insert "------" (prin1-to-string (incf c)) "-----\n" x "\n"))
+              (insert "------" (prin1-to-string (incf c)) "-----\n"
+                      (nisp-slime-filter-trace-buffer x) "\n"))
             describe))
     (insert "=== output ===\n" out "\n")
     (insert "=== error ===\n" err "\n")
