@@ -12,5 +12,12 @@
                          (erc-default-target)
                          (erc-current-nick)) nil)))
 
+(defun erc-cmd-L (ex)
+  "Eval EX in Lisp; insert any output and the result at point."
+  (my-slime-async-eval ex nil
+                     (lambda (in out value)
+                       (erc-send-message
+                        (format "%s --> %s" in value)))))
+(put 'erc-cmd-L 'do-not-parse-args t)
 
 (provide 'nisp-erc-cmd)
