@@ -90,6 +90,9 @@ this to the empty list.")
 ;;; Extra load toolsx
 (require 'nisp-load-helper)
 (require 'nisp-require-system-libraries)
+(add-hook 'emacs-lisp-mode-hook 'auto-make-header)
+(add-hook 'write-file-hooks 'auto-update-file-header)
+
 ;;; Include and turn on ido-mode
 (require 'ido)
 (ido-mode 1)
