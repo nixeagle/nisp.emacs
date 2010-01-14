@@ -8,7 +8,7 @@
 ;; Version:
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 7
+;;     Update #: 8
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -60,6 +60,13 @@
   (cond
    (paredit-mode (paredit-kill arg))
    (t (kill-line arg))))
+
+(defun nisp-paredit-kill-and-join-forward (&optional arg)
+  "Kill the line with `paredit-kill' and remove any spaces."
+  (interactive "P")
+  (paredit-kill arg)
+  (fixup-whitespace)
+  (indent-for-tab-command arg))
 
 
 ;; Taken from emacswiki discussion and modified
