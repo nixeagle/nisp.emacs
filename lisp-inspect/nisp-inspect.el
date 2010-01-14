@@ -8,7 +8,7 @@
 ;; Version: 0.0.1
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 5
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -50,6 +50,35 @@
   "Remove unbalanced delimiters from BUFFER-AS-STRING."
   (replace-regexp-in-string "\\(%DOCUMENTATION\s*=\s\"[^\n\"]*\\)\n"
                             "\\1\"\n" buffer-as-string))
+
+(defun nisp-inspect-set-default-local-variables ()
+  "Set the default buffer local variables."
+  (setq major-mode 'nisp-inspect-mode)
+  (setq mode-name "Nisp Inspect"))
+
+(defun nisp-inspect-mode-make-keymap ()
+  "Return a fresh keymap for `nisp-inspect-mode'."
+  (let ((map (make-sparse-keymap)))
+    map))
+
+;; Deviating from the manual because what it suggests is ugly and
+;; defining my own function and calling it inside a defvar does the same
+;; thing and is easier to read.
+(defvar nisp-inspect-mode-map (nisp-inspect-mode-make-keymap)
+  "Major mode mode map.")
+
+
+(defun nisp-inspect-mode ()
+  "Turn on interactive lisp inspection mode."
+  ;; Needs to switch to new mode, setup syntax table, keymap and buffer
+  ;; local variables without changing the contents of the buffer.
+  ;;
+  ;; Documentation string needs to contain a list of the special
+  ;; commands a user would be interested in.
+  (interactive)
+
+  ;; Manual says "call this first", so we do.
+  (kill-all-local-variables))
 
 (provide 'nisp-inspect)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
