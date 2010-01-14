@@ -142,3 +142,5 @@ this to the empty list.")
 
 ;;; Nothing depends: user-level
 (require 'nisp-help-fns+)
+
+(require 'my-start nil t)
