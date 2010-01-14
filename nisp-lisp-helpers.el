@@ -8,7 +8,7 @@
 ;; Version:
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 6
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -53,6 +53,14 @@
 
 (custom-add-frequent-value 'lisp-mode-hook
                            'nisp-lisp-set-common-lisp-indent)
+
+(defun nisp-kill-line (&optional arg)
+  "Kill a line differently depending on major-mode."
+  (interactive "P")
+  (cond
+   (paredit-mode (paredit-kill arg))
+   (t kill-line)))
+
 
 
 (provide 'nisp-lisp-helpers)
