@@ -63,6 +63,18 @@
 
 
 
+;; Taken from emacswiki discussion and modified
+(defun kill-and-join-forward (&optional arg)
+  "If at end of line, join with following; otherwise kill line.
+     Deletes whitespace at join."
+       (interactive "P")
+       (when (and (eolp) (not (bolp)))
+         (delete-indentation t)
+         (when (looking-at " $")
+           (delete-char 1))
+         (nisp-kill-line arg)))
+
+
 (provide 'nisp-lisp-helpers)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; nisp-lisp-helpers.el ends here
