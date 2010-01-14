@@ -138,3 +138,7 @@ this to the empty list.")
 
 ;;; Setting up a site
 (require 'my-org-jekyll)
+
+
+;;; Nothing depends: user-level
+(require 'nisp-help-fns+)
