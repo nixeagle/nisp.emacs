@@ -8,7 +8,7 @@
 ;; Version:
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 7
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -59,8 +59,7 @@
   (interactive "P")
   (cond
    (paredit-mode (paredit-kill arg))
-   (t kill-line)))
-
+   (t (kill-line arg))))
 
 
 ;; Taken from emacswiki discussion and modified
