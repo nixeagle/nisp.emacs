@@ -1,11 +1,48 @@
-;;; nisp-assert -- Assertions for testing elisp
-;;; Copyright (c) 2010 Nixeagle
-;;; Released under GNU GPLv3 or later
+;;; nisp-assert.el ---
+;;
+;; Filename: nisp-assert.el
+;; Description:
+;; Author: James
+;; Maintainer:
+;; Created: Thu Jan 14 00:22:58 2010 (+0000)
+;; Version:
+;; Last-Updated:
+;;           By:
+;;     Update #: 1
+;; URL:
+;; Keywords:
+;; Compatibility:
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;;; Commentary:
-;; These assertions all use a very different form of argument display:
-;; It looks something like this:
-;;   (string= [(concat "a" "b") => "ab"] ["b" => "b"])
-;; Of course this example is for string assertions only.
+;;
+;;
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;; Change log:
+;;
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License as
+;; published by the Free Software Foundation; either version 3, or
+;; (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with this program; see the file COPYING.  If not, write to
+;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+;; Floor, Boston, MA 02110-1301, USA.
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;;; Code:
 
 (eval-when-compile
@@ -22,9 +59,9 @@
 (defmacro nisp-assert-build-arg-pair (form)
   `(cons ',(symbol-value form) ,(symbol-value form)))
 
-(defmacro nisp-assert-build-arg-pairs (args)
+(defun nisp-assert-build-arg-pairs (args)
   "Return dotted pairs of ARGS and their results."
-  `(list ,@(mapcar (lambda (x)
+  `(,@(mapcar (lambda (x)
               (nisp-assert-build-arg-pair x))
           args)))
 
@@ -38,11 +75,23 @@
 ;;  ((+ 1 2)
 ;;   . 3))
 
-(macroexpand '(nisp-assert-predicate string= 1 2 3))
+(defun nisp-cars (&rest args)
+  "Return the `car' for each dotted pair in ARGS."
+  (mapcar 'car (or (and (consp (cadr args)) args)
+                   (car args))))
+
+(defmacro nisp-assert-predicate (predicate &rest args)
+  "`assert' PREDICATE called with ARGS."
+  (declare (indent 1))
+  (let ((pairs (nisp-assert-build-arg-pairs args)))
+    `',pairs))
+
+;    `(assert (,predicate ,@(nisp-cars pairs)) nil)
+
+;(macroexpand '(nisp-assert-predicate string= 1 2 3))
               ;  (format "%s assertion failed: (%s %S)"
                ;    ,predicate ,predicate
-                   
-)))))
+;)))))
 
 (defun nisp-assert-format-arg (arg value)
   "Format ARG and VALUE as a string.
@@ -69,4 +118,5 @@ Remember if ARG is an expression, pass it quoted."
                         forms)))))
 
 (provide 'nisp-assert)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; nisp-assert.el ends here
