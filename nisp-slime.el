@@ -3,12 +3,12 @@
 ;; Filename: nisp-slime.el
 ;; Description:
 ;; Author: James
-;; Maintainer:
+;; Maintainer: James Nixeagle
 ;; Created: Wed Jan 13 17:33:31 2010 (+0000)
 ;; Version:
-;; Last-Updated: Wed Jan 13 23:16:29 2010 (+0000)
+;; Last-Updated: Thu Jan 14 19:12:49 2010 (+0000)
 ;;           By: James
-;;     Update #: 4
+;;     Update #: 7
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -22,7 +22,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Change log:
-;;
+;; See git logs
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -104,6 +104,24 @@ Based off of `slime-eval-async'."
                       (destructuring-bind (in out err trace val d) result
 ;                        (insert  (replace-regexp-in-string "\\\n" "\n;;=> " val))
                         (make-slime-trace-buffer in out err trace val d)))))
+
+(defun nisp-slime-toggle-trace-fdefinition-no-query ()
+  "Toggle tracing on the common lisp side.
+
+This is a modified version of `slime-toggle-trace-fdefinition'
+that does not prompt for which function to trace, it just does it.
+
+No prompt means toggling trace on and off of a function using a
+single key press is much smoother. If the wrong thing is toggled,
+its easy enough to re-invoke the function.
+
+Please note that the optional parameter using-context-p is set to
+t with no option to override. If this is a problem, I will add it
+back in but with it defaulting to t instead of nil."
+  (interactive)
+  (let ((spec (slime-symbol-at-point)))
+    (message "%s" (slime-eval `(swank:swank-toggle-trace ,spec)))))
+
 
 (provide 'nisp-slime)
 
