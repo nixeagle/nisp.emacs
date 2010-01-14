@@ -91,6 +91,7 @@ this to the empty list.")
 ;;; Extra load toolsx
 (require 'nisp-load-helper)
 (require 'nisp-require-system-libraries)
+(require 'header2)
 (add-hook 'emacs-lisp-mode-hook 'auto-make-header)
 (add-hook 'write-file-hooks 'auto-update-file-header)
 
