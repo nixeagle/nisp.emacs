@@ -68,11 +68,11 @@ for the domain to send text/html by default."
   :package-version '(nisp-paste . 0.4.1)
   :group 'nisp-paste)
 
-(defcustom nisp-paste-format-filename-functions '()
+(defcustom nisp-paste-format-filename-functions '(nisp-paste-replace-spaces)
   "Hooks called before saving a file to disk.
 
 These get called passing one argument, the filename to apply
-changes to. All functions in this list are run using the returned
+changes to.  All functions in this list are run using the returned
 filename from prior calls."
   :type '(hook)
   :package-version '(nisp-paste . 0.5.0)
