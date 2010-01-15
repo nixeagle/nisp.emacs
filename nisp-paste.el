@@ -88,6 +88,13 @@ filename from prior calls."
   (replace-regexp-in-string " "
   (or replace nisp-paste-url-space-char) filename))
 
+(defun nisp-paste-format-filename (filename &optional functions)
+  "Formats FILENAME by running FUNCTIONS over it.
+
+FUNCTIONS defaults to `nisp-paste-format-filename-functions'."
+  (dolist (func (or functions nisp-paste-format-filename-functions) filename)
+    (setq filename (funcall func filename))))
+
 (defun nisp-paste-format-url (url)
   "Return a cleaner string for link and erc from URL."
   (concat (replace-regexp-in-string " " nisp-paste-url-space-char url)
