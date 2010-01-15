@@ -27,8 +27,9 @@ Please send bug reports to i@nixeagle.org labeled clearly as such.
 Table of Contents
 =================
 1 Versioning 
-2 Libraries 
-    2.1 nisp-paste 
+2 Changelog 
+3 Libraries 
+    3.1 nisp-paste 
 
 
 1 Versioning 
@@ -52,10 +53,17 @@ Table of Contents
   same. If I must change it after this point, it will be a new major
   version... eg 2.0.0.
 
-2 Libraries 
+2 Changelog 
+~~~~~~~~~~~~
+  All significent changes to packages in this repository are logged in
+  [file:changelog.org]. When github feels like applying the org-mode
+  formatting patch for README and other files this will look
+  pretty. Until then feel free to view in emacs.
+
+3 Libraries 
 ~~~~~~~~~~~~
 
-2.1 nisp-paste 
+3.1 nisp-paste 
 ===============
     - [file:nisp-paste.el]
 
