@@ -55,7 +55,7 @@ This should be a `string' with `length' 1."
   :package-version '(nisp-paste . 0.3.0)
   :group 'nisp-paste)
 
-(defcustom nisp-paste-filename-extension ""
+(defcustom nisp-paste-filename-extension ".html"
   "Extension for pastes.
 
 By default no extension is added automatically. This is for
