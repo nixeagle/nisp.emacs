@@ -36,3 +36,45 @@
         for the domain to send text/html by default.
 
         Thanks to charlie for the request!
+******* Add nisp-replace-spaces                                     :paste:
+        :PROPERTIES:
+        :VERSION:  0.5.0
+        :END:
+        This is a function that goes on an abnormal hook. Some examples of its
+        use in raw lisp:
+
+        Using the default
+        : (nisp-paste-replace-spaces "testing it")
+        : => "testing-it"
+
+        Using an optional extension
+        : (nisp-paste-replace-spaces "testing it" "_")
+        : => "testing_it"
+******* Add nisp-paste-append-filename-extension                    :paste:
+        :PROPERTIES:
+        :VERSION:  0.5.0
+        :END:
+        Append EXTENSION or if nil =nisp-paste-filename-extension= to FILENAME.
+
+        Using default EXTENSION
+        : (nisp-paste-append-filename-extension "test")
+        : => "test"
+
+        Changing the default EXTENSION as if it were changed by the user to
+        something other then "" (the default).
+        : (let ((nisp-paste-filename-extension ".html"))
+        :   (nisp-paste-append-filename-extension "test"))
+        : => "test.html"
+
+        Passing extension as an explicit argument.
+        : (nisp-paste-append-filename-extension "test" ".html")
+        : => "test.html"
+******* New customize option: -format-filename-functions            :paste:
+        :PROPERTIES:
+        :VERSION:  0.5.0
+        :END:
+        Hooks called before saving a file to disk.
+
+        These get called passing one argument, the filename to apply
+        changes to. All functions in this list are run using the returned
+        filename from prior calls.
