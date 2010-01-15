@@ -75,9 +75,9 @@
   "Execute forms in BODY in buffer for SERVER/TARGET.
 See `nix-erc-get-buffer' for details on how SERVER and TARGET are handled."
   (declare (indent 1) (debug t))
-  (let ((buf (make-symbol "buf")))
-    `(let* ((,buf (nisp-erc-get-buffer ,target ,server)))
-       (if (eq ,buf nil) (nil)
+  (let ((buf (gensym)))
+    `(let ((,buf (nisp-erc-get-buffer ,target ,server)))
+       (if (eq ,buf nil) nil
          (with-current-buffer ,buf
            ,@body)))))
 
