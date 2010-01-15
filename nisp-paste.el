@@ -1,7 +1,7 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.4.0
+;;; version: 0.4.1
 ;;;
 ;;; Dependency on htmlize is included with the repo:
 ;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
@@ -65,7 +65,7 @@ sends plain/text mime headers.
 If this is the case, change this to .html or modify your .htacess
 for the domain to send text/html by default."
   :type '(string)
-  :package-version '(nisp-paste .0.4.0)
+  :package-version '(nisp-paste . 0.4.1)
   :group 'nisp-paste)
 
 (defun nisp-paste-format-url (url)
