@@ -108,10 +108,10 @@ IF TARGET is nil and SERVER-NAME is passed, return related server buffer"
   "Return server process matching SERVER-NAME or return nil on failure"
   (catch 'info
     (mapcar (lambda (proc)
-              (let ((host (process-contact proc :host)))
-                (cond
-                 ((string-equal server-name host)
-                  (throw 'info proc)))))
+              (let ((host (process-contact proc :ho st)))
+                (and (stringp host)
+                     (string= server-name host)
+                     (throw 'info proc))))
             (process-list))
     nil))				;no match return nil.
 
