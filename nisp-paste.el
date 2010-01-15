@@ -1,7 +1,7 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.3.0
+;;; version: 0.4.0
 ;;;
 ;;; Dependency on htmlize is included with the repo:
 ;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
@@ -55,9 +55,23 @@ This should be a `string' with `length' 1."
   :package-version '(nisp-paste . 0.3.0)
   :group 'nisp-paste)
 
+(defcustom nisp-paste-filename-extension ""
+  "Extension for pastes.
+
+By default no extension is added automatically. This is for
+purely aesthetic reasons and is not too useful if your server
+sends plain/text mime headers.
+
+If this is the case, change this to .html or modify your .htacess
+for the domain to send text/html by default."
+  :type '(string)
+  :package-version '(nisp-paste .0.4.0)
+  :group 'nisp-paste)
+
 (defun nisp-paste-format-url (url)
   "Return a cleaner string for link and erc from URL."
-  (replace-regexp-in-string " " nisp-paste-url-space-char url))
+  (concat (replace-regexp-in-string " " nisp-paste-url-space-char url)
+          nisp-paste-filename-extension))
 
 (defun nisp-write-buffer-to-file (buffer file)
   "Write BUFFER to FILE."

@@ -22,3 +22,17 @@
         "-", replace with whatever else you like. This value gets used to
         replace any spaces in the name you type with something prettier then
         the automatic alternative =%20= or whatever it is ;).
+******* Option to automatically append a filename extension         :paste:
+        :PROPERTIES:
+        :VERSION:  0.4.0
+        :END:
+        The option is =nisp-paste-filename-extension=
+
+        By default no extension is added automatically. This is for
+        purely aesthetic reasons and is not too useful if your server
+        sends plain/text mime headers.
+
+        If this is the case, change this to .html or modify your .htacess
+        for the domain to send text/html by default.
+
+        Thanks to charlie for the request!
