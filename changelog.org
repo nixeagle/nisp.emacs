@@ -1,0 +1,16 @@
+* 2010
+*** 2010-01 January
+***** 2010-01-15 Friday
+******* Rename nisp-paste-remote-host to -remote-directory          :paste:
+        :PROPERTIES:
+        :VERSION:  0.2.0
+        :END:
+        not going to work, release v0.2.0 _INCOMPATABLE CHANGE_.
+          
+        Please enter M-x customize-group RET nisp-paste RET and set the path
+        again. The variable is renamed and I do not know how to tell
+        customize to depreciate things.
+          
+        Because this is not after the 1.0 release minor version number
+        increases signal feature additions _and_ incompatable
+        changes. Please read the commit summaries for v0.X.0 releases.
