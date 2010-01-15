@@ -1,7 +1,7 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.1.5
+;;; version: 0.1.6
 ;;;
 ;;; Dependency on htmlize is included with the repo:
 ;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
@@ -34,11 +34,13 @@ This needs to be of a form you would pass to `tramp'.
 Something like this works for me:
   /vps:paste/"
   :type '(string)
+  :package-version '(nisp-paste . 0.1.0)
   :group 'nisp-paste)
 
 (defcustom nisp-paste-link-prefix "http://localhost/"
   "Link to display for others to click on."
   :type '(string)
+  :package-version '(nisp-paste . 0.1.0)
   :group 'nisp-paste)
 
 (defun nisp-write-buffer-to-file (buffer file)
