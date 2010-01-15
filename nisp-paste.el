@@ -1,7 +1,7 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.1.4
+;;; version: 0.1.5
 ;;;
 ;;; Dependency on htmlize is included with the repo:
 ;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
@@ -28,9 +28,14 @@
 
 This needs to be a filepath that tramp can use to do the
 connection. This means you can specify any combination that tramp
-can do as well as specify that pastes go to your local machine."
+can do as well as specify that pastes go to your local machine.
+
+This needs to be of a form you would pass to `tramp'.
+Something like this works for me:
+  /vps:paste/"
   :type '(string)
   :group 'nisp-paste)
+
 (defcustom nisp-paste-link-prefix "http://localhost/"
   "Link to display for others to click on."
   :type '(string)
