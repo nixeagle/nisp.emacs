@@ -95,11 +95,6 @@ FUNCTIONS defaults to `nisp-paste-format-filename-functions'."
   (dolist (func (or functions nisp-paste-format-filename-functions) filename)
     (setq filename (funcall func filename))))
 
-(defun nisp-paste-format-url (url)
-  "Return a cleaner string for link and erc from URL."
-  (concat (replace-regexp-in-string " " nisp-paste-url-space-char url)
-          nisp-paste-filename-extension))
-
 (defun nisp-write-buffer-to-file (buffer file)
   "Write BUFFER to FILE."
   ;; Works with remote hosts through TRAMP.
@@ -115,7 +110,7 @@ FUNCTIONS defaults to `nisp-paste-format-filename-functions'."
   "Paste region"
   (interactive "r\nsPaste Name:\nsMessage:")
   (let* ((html-buffer (htmlize-region beg end))
-         (paste-name (nisp-paste-format-url name))
+         (paste-name (nisp-paste-format-filename name))
          (file (concat nisp-paste-remote-host paste-name)))
     (progn
       (nisp-write-buffer-to-file html-buffer file)
