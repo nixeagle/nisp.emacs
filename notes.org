@@ -16,6 +16,26 @@
     When I wrote this, it was intended to reload system paths so that
     installing new things in debian did not force me to restart emacs.
 
+*** TODO add customize option to add arbitrary extension       :nisp_paste:
+    <nixeagle> charlie:   [06:13]
+<nixeagle> # DefaultType: the default MIME type the server will use for a
+           document
+<nixeagle> # if it cannot otherwise determine one, such as from filename
+           extensions.
+<nixeagle> # If your server contains mostly text or HTML documents, "text/plain"
+           is
+<nixeagle> # a good value.  If most of your content is binary, such as
+           applications
+<nixeagle> # or images, you may want to use "application/octet-stream" instead
+           to
+<nixeagle> # keep browsers from trying to display binary files as though they
+           are
+<nixeagle> # text.
+<nixeagle> DefaultType text/plain
+<nixeagle> charlie: found it, I have mod_magic installed  [06:15]
+<nixeagle> so apache serves the right type from hints in the file
+<nixeagle> set the DefaultType in your access file or your vhost: text/html
+
 
 * Worth my while
 
