@@ -1,7 +1,7 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.2.0
+;;; version: 0.3.0
 ;;;
 ;;; Dependency on htmlize is included with the repo:
 ;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
@@ -24,11 +24,11 @@
   "Paste to remote directory vie `tramp'."
   :group 'programming)
 (defcustom nisp-paste-remote-directory
-  (or nisp-paste-remote-host "")
+  (or nisp-paste-remote-host "/vps:paste/")
   "Host to paste to.
 
 This needs to be a filepath that tramp can use to do the
-connection. This means you can specify any combination that tramp
+connection.  This means you can specify any combination that tramp
 can do as well as specify that pastes go to your local machine.
 
 This needs to be of a form you would pass to `tramp'.
@@ -44,6 +44,21 @@ Something like this works for me:
   :package-version '(nisp-paste . 0.1.0)
   :group 'nisp-paste)
 
+(defcustom nisp-paste-url-space-char "-"
+  "Spaces in paste filenames are replaced with this character.
+
+This should be a `string' with `length' 1."
+  ;;This is not enforced correctly, will need to wait until nisp-types
+  ;;is started. I already have the correct type defined in old code not
+  ;;in this repository.
+  :type '(string)
+  :package-version '(nisp-paste . 0.3.0)
+  :group 'nisp-paste)
+
+(defun nisp-paste-format-url (url)
+  "Return a cleaner string for link and erc from URL."
+  (replace-regexp-in-string " " nisp-paste-url-space-char url))
+
 (defun nisp-write-buffer-to-file (buffer file)
   "Write BUFFER to FILE."
   ;; Works with remote hosts through TRAMP.
@@ -58,11 +73,12 @@ Something like this works for me:
 (defun nisp-paste-region (beg end name msg)
   "Paste region"
   (interactive "r\nsPaste Name:\nsMessage:")
-  (let ((html-buffer (htmlize-region beg end))
-        (file (concat nisp-paste-remote-host name)))
+  (let* ((html-buffer (htmlize-region beg end))
+         (paste-name (nisp-paste-format-url name))
+         (file (concat nisp-paste-remote-host paste-name)))
     (progn
       (nisp-write-buffer-to-file html-buffer file)
-      (let ((url (concat nisp-paste-link-prefix name)))
+      (let ((url (concat nisp-paste-link-prefix paste-name)))
         (nisp-erc-send-message
          (buffer-name (car (erc-buffer-list nil)))
          (concat "See " url " - " msg))))))

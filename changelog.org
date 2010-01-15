@@ -14,3 +14,11 @@
         Because this is not after the 1.0 release minor version number
         increases signal feature additions _and_ incompatable
         changes. Please read the commit summaries for v0.X.0 releases.
+******* Spaces in paste name now converted to nisp-paste-url-space-char :paste:
+        :PROPERTIES:
+        :VERSION:  0.3.0
+        :END:
+        Added nisp-paste-url-space-char as a new customize option. Defaults to
+        "-", replace with whatever else you like. This value gets used to
+        replace any spaces in the name you type with something prettier then
+        the automatic alternative =%20= or whatever it is ;).
