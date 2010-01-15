@@ -26,14 +26,36 @@ Please send bug reports to i@nixeagle.org labeled clearly as such.
 
 Table of Contents
 =================
-1 Libraries 
-    1.1 nisp-paste 
+1 Versioning 
+2 Libraries 
+    2.1 nisp-paste 
 
 
-1 Libraries 
+1 Versioning 
+~~~~~~~~~~~~~
+  For all packages created by myself in this repository versioning is
+  done according to [http://semver.org/]. I greatly appreciate this style
+  and I was largely adhearing to this idea before I read the page.
+
+  In short any package with a version less then 1.0.0 is beta
+  software. Version 1.0.0 represents the first stable _public api_. In
+  emacs terms this means customize options won't get renamed, function
+  names, required arguments and results are all the same.
+
+  An increment of the second number (0.X.0) means a new feature or
+  incompatable api change. An increment of the second number after the
+  1.0.0 release means a new feature, backwards compatable change.
+
+  An increment to the last number means a patch or other minior bugfix.
+
+  The idea here is after 1.0.0 I commit to keeping the public api the
+  same. If I must change it after this point, it will be a new major
+  version... eg 2.0.0.
+
+2 Libraries 
 ~~~~~~~~~~~~
 
-1.1 nisp-paste 
+2.1 nisp-paste 
 ===============
     - [file:nisp-paste.el]
 
