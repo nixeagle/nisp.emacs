@@ -78,3 +78,16 @@
         These get called passing one argument, the filename to apply
         changes to. All functions in this list are run using the returned
         filename from prior calls.
+******* default nisp-paste-filename-extension to .html              :paste:
+        :PROPERTIES:
+        :VERSION:  0.6.0
+        :END:
+        Defaulting this to .html does not automatically meam all paste names
+        have .html extensions because it still needs to be enabled on the
+        -format-filename-functions hook.
+******* Reorder customize group                                     :paste:
+        :PROPERTIES:
+        :VERSION:  0.6.0
+        :END:
+        The hook =nisp-paste-format-filename-functions= is now before
+        =nisp-paste-url-space-char= and =nisp-paste-append-filename-extension=.
