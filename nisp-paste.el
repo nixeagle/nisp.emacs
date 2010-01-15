@@ -80,7 +80,7 @@ filename from prior calls."
   :group 'nisp-paste)
 
 (defun nisp-paste-append-filename-extension (filename &optional extension)
-  "Append EXTENSION or if nil `nisp-paste-filename-extension' to filename."
+  "Append EXTENSION or if nil `nisp-paste-filename-extension' to FILENAME."
   (concat filename (or extension nisp-paste-filename-extension)))
 (defun nisp-paste-format-url (url)
   "Return a cleaner string for link and erc from URL."
