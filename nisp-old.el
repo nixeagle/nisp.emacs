@@ -69,51 +69,7 @@
     (erc-send-message (format "%s ---> %s" expr result))))
 
 
-;;;; More legacy stuff to move over
-;;; I'm at least renaming the functions now.
-(defmacro nisp-erc-with-current-buffer (server target &rest body)
-  "Execute forms in BODY in buffer for SERVER/TARGET.
-See `nix-erc-get-buffer' for details on how SERVER and TARGET are handled."
-  (declare (indent 1) (debug t))
-  (let ((buf (gensym)))
-    `(let ((,buf (nisp-erc-get-buffer ,target ,server)))
-       (if (eq ,buf nil) nil
-         (with-current-buffer ,buf
-           ,@body)))))
 
-(defun nisp-erc-send-message (channel message &optional server)
-  "Send a MESSAGE to CHANNEL.
-If SERVER is given send message to CHANNEL on that SERVER,
-otherwise send message to the first CHANNEL on any server"
-  (nisp-erc-with-current-buffer server channel
-                                (erc-send-message message)))
-
-
-(defun nisp-erc-get-buffer (target &optional server-name)
-  "Get an ERC buffer on any server/channel.
-Both arguments are strings or nil.
-
-If TARGET only is passed, return first channel match or nil.
-
-If TARGET and SERVER-NAME is passed, return buffer on server that  matches
-or nil.
-
-IF TARGET is nil and SERVER-NAME is passed, return related server buffer"
-  (if (eq target nil)
-      (process-contact
-       (nisp-erc-get-server-proc server-name) :buffer)
-    (erc-get-buffer target (nisp-erc-get-server-proc server-name))))
-
-(defun nisp-erc-get-server-proc (&optional server-name)
-  "Return server process matching SERVER-NAME or return nil on failure"
-  (catch 'info
-    (mapcar (lambda (proc)
-              (let ((host (process-contact proc :ho st)))
-                (and (stringp host)
-                     (string= server-name host)
-                     (throw 'info proc))))
-            (process-list))
-    nil))				;no match return nil.
 
 (require 'my-erc-pass)
 (defun my-erc-connect-eighthbit ()

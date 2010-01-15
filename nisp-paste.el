@@ -1,13 +1,23 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
+;;; version: 0.1
+;;;
+;;; If you want paste-region, you need to do:
+;;; (defalias 'paste-region 'nisp-paste-region) in your .emacs
+;;; Bind to your global map with:
+;;; (global-set-key [(hyper ?p)] 'nisp-paste-region)
+;;; or some such.
+
 
 ;;;; TODO: Don't depend on legacy stuff!
-(require 'nisp-old)
+(require 'tramp)
+(require 'htmlize)
+(require 'nisp-erc)
 
 (defgroup nisp-paste nil
   "Paste to remote directory vie `tramp'."
-  :group 'nisp)
+  :group 'programming)
 (defcustom nisp-paste-remote-host ""
   "Host to paste to.
 
