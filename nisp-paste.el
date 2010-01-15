@@ -1,7 +1,12 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.1
+;;; version: 0.1.1
+;;;
+;;; Dependency on htmlize is included with the repo:
+;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
+;;; (add-to-list 'load-path "/path/to/nisp.emacs/3rd-party") ; for htmlize
+;;; (require 'nisp-paste) ; for this lib
 ;;;
 ;;; If you want paste-region, you need to do:
 ;;; (defalias 'paste-region 'nisp-paste-region) in your .emacs
