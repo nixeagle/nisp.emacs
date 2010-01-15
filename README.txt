@@ -27,7 +27,26 @@ Please send bug reports to i@nixeagle.org labeled clearly as such.
 Table of Contents
 =================
 1 Libraries 
+    1.1 nisp-paste 
 
 
 1 Libraries 
 ~~~~~~~~~~~~
+
+1.1 nisp-paste 
+===============
+    - [file:nisp-paste.el]
+
+    Simple pasting to your own web server. Pastes are html and css
+    only. No ads, no dependency on some external pasetbin site for
+    formatting or highlight. Any buffer in emacs can be pasted [1]
+
+    This has a dependency on [file:nisp-erc.el] which is written by me and
+    [file:3rd-party/htmlize.el] which is not. If you have htmlize
+    installed by other means, then do not include the 3rd-party path in
+    your `load-path'.
+
+
+
+[1] Within reason, this pastes _text_.
+
