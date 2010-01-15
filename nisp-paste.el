@@ -1,7 +1,7 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.5.0beta1
+;;; version: 0.6.0
 ;;;
 ;;; Dependency on htmlize is included with the repo:
 ;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
@@ -44,6 +44,18 @@ Something like this works for me:
   :package-version '(nisp-paste . 0.1.0)
   :group 'nisp-paste)
 
+(defcustom nisp-paste-format-filename-functions '(nisp-paste-replace-spaces)
+  "Hooks called before saving a file to disk.
+
+These get called passing one argument, the filename to apply
+changes to.  All functions in this list are run using the returned
+filename from prior calls."
+  :type '(hook)
+  :package-version '(nisp-paste . 0.5.0)
+  :options '(nisp-paste-append-filename-extension
+             nisp-paste-replace-spaces)
+  :group 'nisp-paste)
+
 (defcustom nisp-paste-url-space-char "-"
   "Spaces in paste filenames are replaced with this character.
 
@@ -65,19 +77,7 @@ sends plain/text mime headers.
 If this is the case, change this to .html or modify your .htacess
 for the domain to send text/html by default."
   :type '(string)
-  :package-version '(nisp-paste . 0.4.1)
-  :group 'nisp-paste)
-
-(defcustom nisp-paste-format-filename-functions '(nisp-paste-replace-spaces)
-  "Hooks called before saving a file to disk.
-
-These get called passing one argument, the filename to apply
-changes to.  All functions in this list are run using the returned
-filename from prior calls."
-  :type '(hook)
-  :package-version '(nisp-paste . 0.5.0)
-  :options '(nisp-paste-append-filename-extension
-             nisp-paste-replace-spaces)
+  :package-version '(nisp-paste . 0.6.0)
   :group 'nisp-paste)
 
 (defun nisp-paste-append-filename-extension (filename &optional extension)
