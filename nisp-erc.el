@@ -8,7 +8,7 @@
 ;; Version: 0.1
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 5
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -84,7 +84,7 @@ IF TARGET is nil and SERVER-NAME is passed, return related server buffer"
   "Return server process matching SERVER-NAME or return nil on failure"
   (catch 'info
     (mapcar (lambda (proc)
-              (let ((host (process-contact proc :host)))
+              (let ((host (process-contact proc :host server-name)))
                 (and (stringp host)
                      (string= server-name host)
                      (throw 'info proc))))

@@ -1,7 +1,7 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.1.2
+;;; version: 0.1.3
 ;;;
 ;;; Dependency on htmlize is included with the repo:
 ;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
