@@ -1,7 +1,7 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.6.0
+;;; version: 0.6.1
 ;;;
 ;;; Dependency on htmlize is included with the repo:
 ;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
@@ -24,7 +24,9 @@
   "Paste to remote directory vie `tramp'."
   :group 'programming)
 (defcustom nisp-paste-remote-directory
-  (or nisp-paste-remote-host "/vps:paste/")
+  (or (and (boundp nisp-paste-remote-host)
+           nisp-paste-remote-host)
+      "/vps:paste/")
   "Host to paste to.
 
 This needs to be a filepath that tramp can use to do the
@@ -35,7 +37,7 @@ This needs to be of a form you would pass to `tramp'.
 Something like this works for me:
   /vps:paste/"
   :type 'directory
-  :package-version '(nisp-paste . 0.2.0)
+  :package-version '(nisp-paste . 0.6.1)
   :group 'nisp-paste)
 
 (defcustom nisp-paste-link-prefix "http://localhost/"
