@@ -1,7 +1,7 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.4.1
+;;; version: 0.5.0beta1
 ;;;
 ;;; Dependency on htmlize is included with the repo:
 ;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
@@ -68,6 +68,20 @@ for the domain to send text/html by default."
   :package-version '(nisp-paste . 0.4.1)
   :group 'nisp-paste)
 
+(defcustom nisp-paste-format-filename-functions '()
+  "Hooks called before saving a file to disk.
+
+These get called passing one argument, the filename to apply
+changes to. All functions in this list are run using the returned
+filename from prior calls."
+  :type '(hook)
+  :package-version '(nisp-paste . 0.5.0)
+  :options '(nisp-paste-append-filename-extension)
+  :group 'nisp-paste)
+
+(defun nisp-paste-append-filename-extension (filename &optional extension)
+  "Append EXTENSION or if nil `nisp-paste-filename-extension' to filename."
+  (concat filename nisp-paste-filename-extension))
 (defun nisp-paste-format-url (url)
   "Return a cleaner string for link and erc from URL."
   (concat (replace-regexp-in-string " " nisp-paste-url-space-char url)
