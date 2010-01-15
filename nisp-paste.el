@@ -76,12 +76,18 @@ changes to. All functions in this list are run using the returned
 filename from prior calls."
   :type '(hook)
   :package-version '(nisp-paste . 0.5.0)
-  :options '(nisp-paste-append-filename-extension)
+  :options '(nisp-paste-append-filename-extension
+             nisp-paste-replace-spaces)
   :group 'nisp-paste)
 
 (defun nisp-paste-append-filename-extension (filename &optional extension)
   "Append EXTENSION or if nil `nisp-paste-filename-extension' to FILENAME."
   (concat filename (or extension nisp-paste-filename-extension)))
+
+(defun nisp-paste-replace-spaces (filename &optional replace)
+  (replace-regexp-in-string " "
+  (or replace nisp-paste-url-space-char) filename))
+
 (defun nisp-paste-format-url (url)
   "Return a cleaner string for link and erc from URL."
   (concat (replace-regexp-in-string " " nisp-paste-url-space-char url)
