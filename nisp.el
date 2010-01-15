@@ -4,11 +4,11 @@
 
 
 ;;; These really need moved to something org-mode specific.
-(defun nisp:last-buffer ()
+(defun nisp-last-buffer ()
   "Get the buffer point was in."
   (second (buffer-list)))
 
-(defun nisp:last-buffer-with-file ()
+(defun nisp-last-buffer-with-file ()
   "Get the last visited buffer that has an associated filename."
   (dolist (buf (buffer-list))
     (when (stringp (buffer-file-name buf))
