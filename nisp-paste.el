@@ -1,7 +1,7 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.6.1
+;;; version: 0.6.2
 ;;;
 ;;; Dependency on htmlize is included with the repo:
 ;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
@@ -24,7 +24,7 @@
   "Paste to remote directory vie `tramp'."
   :group 'programming)
 (defcustom nisp-paste-remote-directory
-  (or (and (boundp nisp-paste-remote-host)
+  (or (and (boundp 'nisp-paste-remote-host)
            nisp-paste-remote-host)
       "/vps:paste/")
   "Host to paste to.
