@@ -6,9 +6,9 @@
 ;; Maintainer: James Nixeagle
 ;; Created: Wed Jan 13 17:33:31 2010 (+0000)
 ;; Version:
-;; Last-Updated: Fri Jan 22 02:04:59 2010 (+0000)
+;; Last-Updated: Fri Jan 22 02:29:31 2010 (+0000)
 ;;           By: James
-;;     Update #: 24
+;;     Update #: 27
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -86,7 +86,6 @@ assumed to already be in a sexp or after one."
     (beginning-of-defun)
     (point)))
 
-(defun nisp-after-closing-paren-p ()
 (defun nisp-after-closing-paren-p (&optional p)
   "Return `t' when point is after a ).
 
