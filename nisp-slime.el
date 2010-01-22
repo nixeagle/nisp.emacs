@@ -6,9 +6,9 @@
 ;; Maintainer: James Nixeagle
 ;; Created: Wed Jan 13 17:33:31 2010 (+0000)
 ;; Version:
-;; Last-Updated: Fri Jan 22 05:25:03 2010 (+0000)
+;; Last-Updated: Fri Jan 22 05:56:27 2010 (+0000)
 ;;           By: James
-;;     Update #: 40
+;;     Update #: 41
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -236,7 +236,18 @@ results and leaves point at the original place you invoked it."
            (replace-regexp-in-string "\\\n" "\n;;=> " val)
            "\n"))))))
 
+(defun my-slime-eval-last-exprssion-into-minibuffer (string)
+  "Evalutate the last expression before point.
 
+This is special in that it replaces past results with the new
+results and leaves point at the original place you invoked it."
+  (interactive (save-current-point
+                 (goto-sexp-end)
+                 (list (slime-last-expression))))
+  (slime-eval-async `(nix-emacs::nix-pprint-eval ,string t)
+    (lambda (result)
+      (destructuring-bind (in out err trace val d) result
+        (message "%s" (substring val 1))))))
 
 (defun nisp-slime-toggle-trace-fdefinition-no-query ()
   "Toggle tracing on the common lisp side.
