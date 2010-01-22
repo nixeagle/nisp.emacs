@@ -73,36 +73,32 @@ This does _not_ gaurd against errors!. This is by design."
 ;; its really end of next defun, where defun is anything other then spaces...
 ;; such as numbers, strings, and so on.
 (defun nisp-end-of-defun (&optional p)
-  (save-current-point
-   (and p (goto-char p))
-   (end-of-defun)
-   (point)))
+  (save-point-and-goto p
+    (end-of-defun)
+    (point)))
 
 (defun nisp-beginning-of-defun (&optional p)
   "Return location for the start of \"defun\".
 
 This does not do what it should do for all cases. Point is
 assumed to already be in a sexp or after one."
-  (save-current-point
-   (and p (goto-char p))
-   (beginning-of-defun)
-   (point)))
+  (save-point-and-goto p
+    (beginning-of-defun)
+    (point)))
 
 (defun nisp-after-closing-paren-p ()
 (defun nisp-after-closing-paren-p (&optional p)
   "Return `t' when point is after a ).
 
 This ignores any whitespace that might exist."
-  (save-current-point
-   (and p (goto-char p))
-   (save-match-data                    ;don't want to modify match data.
-     (looking-back ")\s*"))))
+  (save-point-and-goto p
+    (save-match-data                    ;don't want to modify match data.
+      (looking-back ")\s*"))))
 
 (defun nisp-eolp (&optional p)
   "Return `t' if point is at the end of a line ignoring whitespace."
-  (save-current-point
-   (and p (goto-char p))
-   (looking-at-p "\s*\n")))
+  (save-point-and-goto p
+    (looking-at-p "\s*\n")))
 (defun my-slime-async-eval (expression ns func)
   "Eval EXPRESSION in `slime' and pass result to BODY.
 
