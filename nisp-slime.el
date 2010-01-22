@@ -69,10 +69,14 @@ This does _not_ gaurd against errors!. This is by design."
    (point)))
 
 (defun nisp-beginning-of-defun (&optional p)
-  (let ((p (or p (point))))
-    (prog2 (beginning-of-defun)
-        (point)
-      (goto-char p))))
+  "Return location for the start of \"defun\".
+
+This does not do what it should do for all cases. Point is
+assumed to already be in a sexp or after one."
+  (save-current-point
+   (and p (goto-char p))
+   (beginning-of-defun)
+   (point)))
 
 (defun nisp-after-closing-paren-p ()
   "Return `t' when point is after a ).
