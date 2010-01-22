@@ -52,10 +52,11 @@
 ;; its really end of next defun, where defun is anything other then spaces...
 ;; such as numbers, strings, and so on.
 (defun nisp-end-of-defun (&optional p)
-  (let ((p (or p (point))))
+  (let ((old-point (point)))
+    (goto-char (or p old-point))
     (prog2 (end-of-defun)
         (point)
-      (goto-char p))))
+      (goto-char old-point))))
 
 (defun nisp-beginning-of-defun (&optional p)
   (let ((p (or p (point))))
