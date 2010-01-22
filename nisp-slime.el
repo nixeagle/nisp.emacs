@@ -60,6 +60,14 @@ This does _not_ gaurd against errors!. This is by design."
              ,@body)
          (goto-char ,p)))))
 
+(defmacro save-point-and-goto (the-point &rest body)
+  "Save where point is now and optionally goto THE-POINT."
+  (let ((old-point (gensym)))
+    `(let ((,old-point ,the-point))
+       (save-current-point
+        (and ,old-point (goto-char ,old-point))
+        ,@body))))
+
 ;; point where "end of defun" is. Problem is its not really accurate.
 ;; its really end of next defun, where defun is anything other then spaces...
 ;; such as numbers, strings, and so on.
