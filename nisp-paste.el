@@ -1,7 +1,7 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.6.3
+;;; version: 0.6.4
 ;;;
 ;;; Dependency on htmlize is included with the repo:
 ;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
@@ -119,7 +119,7 @@ FUNCTIONS defaults to `nisp-paste-format-filename-functions'."
       (let ((url (concat nisp-paste-link-prefix paste-name)))
         (nisp-erc-send-message
          (buffer-name (car (erc-buffer-list nil)))
-         (concat "See " url " - " msg))))))
+         (concat "See " url (or msg " - " msg)))))))
 
 
 (provide 'nisp-paste)
