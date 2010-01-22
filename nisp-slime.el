@@ -47,8 +47,9 @@
 (defun goto-sexp-end ()
   "Move point to the end of the current sexp"
   (interactive)
-  (goto-char (nisp-end-of-defun (nisp-beginning-of-defun)))
-  (and (bolp) (not (bobp)) (backward-char)))
+  (goto-char (or (and (nisp-looking-at-opening-paren-p) (forward-char))
+                 (nisp-end-of-defun (nisp-beginning-of-defun))))
+             (and (bolp) (not (bobp)) (backward-char)))
 
 (defmacro save-current-point (&rest body)
   "Save the value of THE-POINT and restore it.
