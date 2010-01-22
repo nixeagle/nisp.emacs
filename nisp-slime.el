@@ -99,6 +99,12 @@ This ignores any whitespace that might exist."
   "Return `t' if point is at the end of a line ignoring whitespace."
   (save-point-and-goto p
     (looking-at-p "\s*\n")))
+
+(defun nisp-looking-at-opening-paren-p (&optional p)
+  "True if point is ontop of an opening paren '('."
+  (save-point-and-goto p
+    (looking-at-p "(")))
+
 (defun my-slime-async-eval (expression ns func)
   "Eval EXPRESSION in `slime' and pass result to BODY.
 
