@@ -6,9 +6,9 @@
 ;; Maintainer: James Nixeagle
 ;; Created: Wed Jan 13 17:33:31 2010 (+0000)
 ;; Version:
-;; Last-Updated: Fri Jan 22 01:17:46 2010 (+0000)
+;; Last-Updated: Fri Jan 22 01:30:10 2010 (+0000)
 ;;           By: James
-;;     Update #: 15
+;;     Update #: 17
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -63,6 +63,12 @@
         (point)
       (goto-char p))))
 
+(defun nisp-after-closing-paren-p ()
+  "Return `t' when point is after a ).
+
+This ignores any whitespace that might exist."
+  (save-match-data                      ;don't want to modify match data.
+    (looking-back ")\s*")))
 (defun my-slime-async-eval (expression ns func)
   "Eval EXPRESSION in `slime' and pass result to BODY.
 
