@@ -6,9 +6,9 @@
 ;; Maintainer: James Nixeagle
 ;; Created: Wed Jan 13 17:33:31 2010 (+0000)
 ;; Version:
-;; Last-Updated: Fri Jan 22 01:53:32 2010 (+0000)
+;; Last-Updated: Fri Jan 22 01:55:16 2010 (+0000)
 ;;           By: James
-;;     Update #: 20
+;;     Update #: 21
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -48,14 +48,6 @@
   "Move point to the end of the current sexp"
   (end-of-defun)
   (backward-char))
-;; point where "end of defun" is. Problem is its not really accurate.
-;; its really end of next defun, where defun is anything other then spaces...
-;; such as numbers, strings, and so on.
-(defun nisp-end-of-defun (&optional p)
-  (save-current-point
-   (or p (goto-char p))
-   (end-of-defun)
-   (point)))
 (defmacro save-current-point (&rest body)
   "Save the value of THE-POINT and restore it.
 
@@ -66,6 +58,15 @@ This does _not_ gaurd against errors!. This is by design."
            (progn
              ,@body)
          (goto-char ,p)))))
+
+;; point where "end of defun" is. Problem is its not really accurate.
+;; its really end of next defun, where defun is anything other then spaces...
+;; such as numbers, strings, and so on.
+(defun nisp-end-of-defun (&optional p)
+  (save-current-point
+   (or p (goto-char p))
+   (end-of-defun)
+   (point)))
 
 (defun nisp-beginning-of-defun (&optional p)
   (let ((p (or p (point))))
