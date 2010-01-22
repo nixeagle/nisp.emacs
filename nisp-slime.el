@@ -110,6 +110,29 @@ Based off of `slime-eval-async'."
                         (make-slime-trace-buffer in out err trace val d)
                         (message "%s" (substring val 1))))))
 
+(defun my-slime-eval-last-exprssion-into-current-buffer (string)
+  "Evalutate the last expression before point.
+
+This is special in that it replaces past results with the new
+results and leaves point at the original place you invoked it."
+  (interactive (let ((p (point)))
+                 (goto-sexp-end)
+                 (prog1 (list (slime-last-expression))
+                   (goto-char p))))
+  (slime-eval-async `(nix-emacs::nix-pprint-eval ,string t)
+    (lambda (result)
+      (destructuring-bind (in out err trace val d) result
+        (let ((p (point)))
+          (goto-sexp-end)
+          (when (looking-at "\\(\\(\\\s*\n\\)*;;=> .*\n?\\)+")
+            (replace-match ""))
+          (insert
+           (replace-regexp-in-string "\\\n" "\n;;=> " val)
+           "\n")
+          (goto-char p))))))
+
+
+
 (defun nisp-slime-toggle-trace-fdefinition-no-query ()
   "Toggle tracing on the common lisp side.
 
