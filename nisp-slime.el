@@ -69,6 +69,10 @@
 This ignores any whitespace that might exist."
   (save-match-data                      ;don't want to modify match data.
     (looking-back ")\s*")))
+
+(defun nisp-eolp ()
+  "Return `t' if point is at the end of a line ignoring whitespace."
+  (looking-at-p "\s*\n"))
 (defun my-slime-async-eval (expression ns func)
   "Eval EXPRESSION in `slime' and pass result to BODY.
 
