@@ -164,21 +164,19 @@ Based off of `slime-eval-async'."
 
 This is special in that it replaces past results with the new
 results and leaves point at the original place you invoked it."
-  (interactive (let ((p (point)))
+  (interactive (save-current-point
                  (goto-sexp-end)
-                 (prog1 (list (slime-last-expression))
-                   (goto-char p))))
+                 (list (slime-last-expression))))
   (slime-eval-async `(nix-emacs::nix-pprint-eval ,string t)
     (lambda (result)
       (destructuring-bind (in out err trace val d) result
-        (let ((p (point)))
+        (save-current-point
           (goto-sexp-end)
           (when (looking-at "\\(\\(\\\s*\n\\)*;;=> .*\n?\\)+")
             (replace-match ""))
           (insert
            (replace-regexp-in-string "\\\n" "\n;;=> " val)
-           "\n")
-          (goto-char p))))))
+           "\n"))))))
 
 
 
