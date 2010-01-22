@@ -6,9 +6,9 @@
 ;; Maintainer: James Nixeagle
 ;; Created: Wed Jan 13 17:33:31 2010 (+0000)
 ;; Version:
-;; Last-Updated: Fri Jan 22 01:55:16 2010 (+0000)
+;; Last-Updated: Fri Jan 22 01:57:43 2010 (+0000)
 ;;           By: James
-;;     Update #: 21
+;;     Update #: 22
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -64,7 +64,7 @@ This does _not_ gaurd against errors!. This is by design."
 ;; such as numbers, strings, and so on.
 (defun nisp-end-of-defun (&optional p)
   (save-current-point
-   (or p (goto-char p))
+   (and p (goto-char p))
    (end-of-defun)
    (point)))
 
