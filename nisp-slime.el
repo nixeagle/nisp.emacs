@@ -6,9 +6,9 @@
 ;; Maintainer: James Nixeagle
 ;; Created: Wed Jan 13 17:33:31 2010 (+0000)
 ;; Version:
-;; Last-Updated: Fri Jan 22 00:26:50 2010 (+0000)
+;; Last-Updated: Fri Jan 22 01:17:46 2010 (+0000)
 ;;           By: James
-;;     Update #: 13
+;;     Update #: 15
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -48,6 +48,14 @@
   "Move point to the end of the current sexp"
   (end-of-defun)
   (backward-char))
+;; point where "end of defun" is. Problem is its not really accurate.
+;; its really end of next defun, where defun is anything other then spaces...
+;; such as numbers, strings, and so on.
+(defun nisp-end-of-defun (&optional p)
+  (let ((p (or p (point))))
+    (prog2 (end-of-defun)
+        (point)
+      (goto-char p))))
 
 (defun my-slime-async-eval (expression ns func)
   "Eval EXPRESSION in `slime' and pass result to BODY.
