@@ -57,6 +57,12 @@
         (point)
       (goto-char p))))
 
+(defun nisp-beginning-of-defun (&optional p)
+  (let ((p (or p (point))))
+    (prog2 (beginning-of-defun)
+        (point)
+      (goto-char p))))
+
 (defun my-slime-async-eval (expression ns func)
   "Eval EXPRESSION in `slime' and pass result to BODY.
 
