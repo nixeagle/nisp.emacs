@@ -52,11 +52,10 @@
 ;; its really end of next defun, where defun is anything other then spaces...
 ;; such as numbers, strings, and so on.
 (defun nisp-end-of-defun (&optional p)
-  (let ((old-point (point)))
-    (goto-char (or p old-point))
-    (prog2 (end-of-defun)
-        (point)
-      (goto-char old-point))))
+  (save-current-point
+   (or p (goto-char p))
+   (end-of-defun)
+   (point)))
 (defmacro save-current-point (&rest body)
   "Save the value of THE-POINT and restore it.
 
