@@ -1,0 +1,15 @@
+;; Object my/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "my/"
+  :tables (list 
+   (semanticdb-table "my-keymap.el"
+    :major-mode 'emacs-lisp-mode
+    :tags '(("my-global-keymap" function (:user-visible-flag t) nil [216 716]) ("c/paredit-keys" function nil nil [718 1455]) ("my-global-keymap" code nil nil [1457 1475]) ("c/paredit-keys" code nil nil [1476 1492]) ("define-key" code nil nil [1494 1578]) ("define-key" code nil nil [1579 1650]) ("define-key" code nil nil [1651 1731]) ("my-keymap" package nil nil [1733 1753]))
+    :file "my-keymap.el"
+    :pointmax 1773
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "2.0pre4"
+  :semanticdb-version "2.0pre4"
+  )
