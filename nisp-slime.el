@@ -6,9 +6,9 @@
 ;; Maintainer: James Nixeagle
 ;; Created: Wed Jan 13 17:33:31 2010 (+0000)
 ;; Version:
-;; Last-Updated: Fri Jan 22 01:30:10 2010 (+0000)
+;; Last-Updated: Fri Jan 22 01:53:32 2010 (+0000)
 ;;           By: James
-;;     Update #: 17
+;;     Update #: 20
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -57,6 +57,16 @@
     (prog2 (end-of-defun)
         (point)
       (goto-char old-point))))
+(defmacro save-current-point (&rest body)
+  "Save the value of THE-POINT and restore it.
+
+This does _not_ gaurd against errors!. This is by design."
+  (let ((p (gensym)))
+    `(let ((,p (point)))
+       (prog1
+           (progn
+             ,@body)
+         (goto-char ,p)))))
 
 (defun nisp-beginning-of-defun (&optional p)
   (let ((p (or p (point))))
