@@ -62,6 +62,7 @@ This does _not_ gaurd against errors!. This is by design."
 
 (defmacro save-point-and-goto (the-point &rest body)
   "Save where point is now and optionally goto THE-POINT."
+  (declare (indent 1))
   (let ((old-point (gensym)))
     `(let ((,old-point ,the-point))
        (save-current-point
