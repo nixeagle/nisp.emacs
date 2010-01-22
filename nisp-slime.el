@@ -6,9 +6,9 @@
 ;; Maintainer: James Nixeagle
 ;; Created: Wed Jan 13 17:33:31 2010 (+0000)
 ;; Version:
-;; Last-Updated: Fri Jan 22 01:57:43 2010 (+0000)
+;; Last-Updated: Fri Jan 22 02:04:59 2010 (+0000)
 ;;           By: James
-;;     Update #: 22
+;;     Update #: 24
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -79,11 +79,14 @@ assumed to already be in a sexp or after one."
    (point)))
 
 (defun nisp-after-closing-paren-p ()
+(defun nisp-after-closing-paren-p (&optional p)
   "Return `t' when point is after a ).
 
 This ignores any whitespace that might exist."
-  (save-match-data                      ;don't want to modify match data.
-    (looking-back ")\s*")))
+  (save-current-point
+   (and p (goto-char p))
+   (save-match-data                    ;don't want to modify match data.
+     (looking-back ")\s*"))))
 
 (defun nisp-eolp ()
   "Return `t' if point is at the end of a line ignoring whitespace."
