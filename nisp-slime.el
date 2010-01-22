@@ -107,7 +107,8 @@ Based off of `slime-eval-async'."
                     (lambda (result)
                       (destructuring-bind (in out err trace val d) result
 ;                        (insert  (replace-regexp-in-string "\\\n" "\n;;=> " val))
-                        (make-slime-trace-buffer in out err trace val d)))))
+                        (make-slime-trace-buffer in out err trace val d)
+                        (message "%s" (substring val 1))))))
 
 (defun nisp-slime-toggle-trace-fdefinition-no-query ()
   "Toggle tracing on the common lisp side.
