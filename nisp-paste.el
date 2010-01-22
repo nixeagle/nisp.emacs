@@ -1,7 +1,7 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.6.2
+;;; version: 0.6.3
 ;;;
 ;;; Dependency on htmlize is included with the repo:
 ;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
@@ -113,7 +113,7 @@ FUNCTIONS defaults to `nisp-paste-format-filename-functions'."
   (interactive "r\nsPaste Name:\nsMessage:")
   (let* ((html-buffer (htmlize-region beg end))
          (paste-name (nisp-paste-format-filename name))
-         (file (concat nisp-paste-remote-host paste-name)))
+         (file (concat nisp-paste-remote-directory paste-name)))
     (progn
       (nisp-write-buffer-to-file html-buffer file)
       (let ((url (concat nisp-paste-link-prefix paste-name)))
