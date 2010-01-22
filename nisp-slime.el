@@ -6,9 +6,9 @@
 ;; Maintainer: James Nixeagle
 ;; Created: Wed Jan 13 17:33:31 2010 (+0000)
 ;; Version:
-;; Last-Updated: Fri Jan 22 05:56:27 2010 (+0000)
+;; Last-Updated: Fri Jan 22 05:58:46 2010 (+0000)
 ;;           By: James
-;;     Update #: 41
+;;     Update #: 42
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -209,7 +209,9 @@ Based off of `slime-eval-async'."
                         (make-slime-trace-buffer in out err trace val d)))))
 
 (defun my-slime-eval-last-expression (string)
-  (interactive (list (slime-last-expression)))
+  (interactive (save-current-point
+                 (goto-sexp-end)
+                 (list (slime-last-expression))))
   (slime-eval-async `(nix-emacs::nix-pprint-eval ,string t)
                     (lambda (result)
                       (destructuring-bind (in out err trace val d) result
