@@ -46,8 +46,9 @@
 ;;; Code:
 (defun goto-sexp-end ()
   "Move point to the end of the current sexp"
-  (end-of-defun)
-  (backward-char))
+  (interactive)
+  (goto-char (nisp-end-of-defun (nisp-beginning-of-defun))))
+
 (defmacro save-current-point (&rest body)
   "Save the value of THE-POINT and restore it.
 
