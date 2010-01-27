@@ -54,7 +54,7 @@
 
 (defun erc-cmd-EEVAL (&rest expression)
   "evaluate given lisp expression."
-  (let* ((expr (mapconcat 'identity expression " ")) ;(mapconcat 'identity expression " "))
+  (let* ((expr (mapconcat 'identity expression " "))
          (result (condition-case err
                      (eval (read-from-whole-string expr))
                    (error (format "ERROR: %S" error)))))
