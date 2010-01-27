@@ -6,9 +6,9 @@
 ;; Maintainer: James Nixeagle
 ;; Created: Wed Jan 13 17:33:31 2010 (+0000)
 ;; Version:
-;; Last-Updated: Fri Jan 22 05:58:46 2010 (+0000)
+;; Last-Updated: Sun Jan 24 03:12:37 2010 (+0000)
 ;;           By: James
-;;     Update #: 42
+;;     Update #: 44
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -237,6 +237,51 @@ results and leaves point at the original place you invoked it."
           (insert
            (replace-regexp-in-string "\\\n" "\n;;=> " val)
            "\n"))))))
+
+(defun my-slime-eval-last-exprssion-into-irc (string)
+  "Evalutate the last expression before point.
+
+This is special in that it replaces past results with the new
+results and leaves point at the original place you invoked it."
+  (interactive (save-current-point
+                 (goto-sexp-end)
+                 (list (slime-last-expression))))
+  (slime-eval-async `(nix-emacs::nix-pprint-eval ,string t)
+    (lambda (result)
+      (destructuring-bind (in out err trace val d) result
+        (save-current-point
+          (goto-sexp-end)
+          (when (looking-at "\\(\\(\\\s*\n\\)*;;=> .*\n?\\)+")
+            (replace-match ""))
+          (insert
+           (replace-regexp-in-string "\\\n" "\n;;=> " val)
+           "\n"))
+        (let ((v-no-newline (replace-regexp-in-string "\\\n\s*" " " val))
+              (i-no-newline (replace-regexp-in-string "\\\n\s*" " " in)))
+          (nisp-erc-send-message (buffer-name (car (erc-buffer-list)))
+                                 (concat i-no-newline
+                                         " ==> "
+                                         v-no-newline)))))))
+
+
+(defun my-slime-eval-last-exprssion-into-irc-no-buffer (string)
+  "Evalutate the last expression before point.
+
+This is special in that it replaces past results with the new
+results and leaves point at the original place you invoked it."
+  (interactive (save-current-point
+                 (goto-sexp-end)
+                 (list (slime-last-expression))))
+  (slime-eval-async `(nix-emacs::nix-pprint-eval ,string t)
+    (lambda (result)
+      (destructuring-bind (in out err trace val d) result
+        (let ((v-no-newline (replace-regexp-in-string "\\\n\s*" " " val))
+              (i-no-newline (replace-regexp-in-string "\\\n\s*" " " in)))
+          (nisp-erc-send-message (buffer-name (car (erc-buffer-list)))
+                                 (concat i-no-newline
+                                         " ==> "
+                                         v-no-newline)))))))
+
 
 (defun my-slime-eval-last-exprssion-into-minibuffer (string)
   "Evalutate the last expression before point.
