@@ -1,7 +1,7 @@
 ;;;;;; nisp-paste
 ;;;; Copyright (c) 2010 Nixeagle
 ;;;; Released under GNU GPLv3 or later
-;;; version: 0.6.4
+;;; version: 0.7.0
 ;;;
 ;;; Dependency on htmlize is included with the repo:
 ;;; (add-to-list 'load-path "/path/to/nisp.emacs") ; for this file
@@ -58,6 +58,16 @@ filename from prior calls."
              nisp-paste-replace-spaces)
   :group 'nisp-paste)
 
+(defcustom nisp-paste-pre-paste-functions '()
+  "Called before a paste is made.
+
+The single argument given is the paste url. If any of these
+return nil the paste is not done."
+  :type '(hook)
+  :package-version '(nisp-paste . 0.7.0)
+  :options '(nisp-paste-confirm-irc-paste)
+  :group 'nisp-paste)
+
 (defcustom nisp-paste-url-space-char "-"
   "Spaces in paste filenames are replaced with this character.
 
@@ -108,15 +118,23 @@ FUNCTIONS defaults to `nisp-paste-format-filename-functions'."
   ;; Why do we return true all the time?
   t)
 
+(defun nisp-paste-confirm-irc-paste (url)
+  "Confirm user wants to paste URL into last channel point was in."
+  (print "hi")
+  (y-or-n-p (format "Putting link %s into channel %s? "
+                    url (buffer-name (car (erc-buffer-list nil))))))
+
 (defun nisp-paste-region (beg end name msg)
-  "Paste region"
+  "Paste region."
   (interactive "r\nsPaste Name:\nsMessage:")
   (let* ((html-buffer (htmlize-region beg end))
          (paste-name (nisp-paste-format-filename name))
          (file (concat nisp-paste-remote-directory paste-name)))
-    (progn
-      (nisp-write-buffer-to-file html-buffer file)
-      (let ((url (concat nisp-paste-link-prefix paste-name)))
+    (let ((url (concat nisp-paste-link-prefix paste-name)))
+      (print url)
+      (when (run-hook-with-args-until-failure 'nisp-paste-pre-paste-functions
+                                              url)
+        (nisp-write-buffer-to-file html-buffer file)
         (nisp-erc-send-message
          (buffer-name (car (erc-buffer-list nil)))
          (concat "See " url (or msg " - " msg)))))))
