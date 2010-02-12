@@ -60,6 +60,17 @@
                    (error (format "ERROR: %S" error)))))
     (erc-send-message (format "%s ---> %S" expr result))))
 (defalias 'erc-cmd-E 'erc-cmd-EEVAL)
+
+(defun-rcirc-command eeval (input)
+     "Evaluate INPUT and send the result to current buffer's target."
+     (interactive "i")
+     (rcirc-send-message process target
+                         (format "%s => %S" input
+                                 (condition-case err
+                                     (eval (read-from-whole-string input))
+                                   (error (format "ERROR: %S" err))))))
+(defalias 'rcirc-cmd-e 'rcirc-cmd-eeval)
+
 (defun erc-cmd-SEVAL (&rest expression)
   "evaluate given lisp expression."
   (let* ((expr (mapconcat 'identity expression " ")) ;(mapconcat 'identity expression " "))
