@@ -8,7 +8,7 @@
 ;; Version:
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 5
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -91,6 +91,12 @@ Functions to ignore are in `nisp-eldoc-ignorable-elisp-list'."
 
 (defun nisp-eldoc-documentation-function-elisp
   (&optional n.symbol n.function-symbol)
+  "Print documentation information using `eldoc'.
+
+This is called by `eldoc-print-current-symbol-info' by being
+added to `eldoc-documentation-function'. The primary difference
+is this function prints the current value of a global variable
+instead of that variable's documentation string."
   (let ((n.symbol (or n.symbol (eldoc-current-symbol)))
         (n.function-symbol (or n.function-symbol
                                (eldoc-fnsym-in-current-sexp))))
