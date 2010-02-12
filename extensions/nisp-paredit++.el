@@ -21,7 +21,8 @@ Deprecated: use `paredit-mode' instead."
 (when (fboundp 'paredit-mode)
       (mapc (lambda (hook)
               (custom-add-frequent-value hook 'enable-paredit-mode))
-            '(lisp-mode-hook scheme-mode-hook emacs-lisp-mode-hook)))
+            '(lisp-mode-hook scheme-mode-hook emacs-lisp-mode-hook
+                             lisp-interaction-mode)))
 
 
 (provide 'nisp-paredit++)
