@@ -48,6 +48,10 @@
 (provide 'nisp-eldoc++)
 (require 'eldoc)
 
+(defun nisp-eldoc-remove-newlines (n.string &optional n.replace-string)
+  (check-type n.string string)
+  (replace-regexp-in-string "\n" " " n.string))
+
 (defun nisp-eldoc-function-elisp-variable-value
   (&optional n.symbol)
   "Return N.SYMBOL's value.
