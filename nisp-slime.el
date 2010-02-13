@@ -6,9 +6,9 @@
 ;; Maintainer: James Nixeagle
 ;; Created: Wed Jan 13 17:33:31 2010 (+0000)
 ;; Version:
-;; Last-Updated: Sun Jan 24 03:12:37 2010 (+0000)
+;; Last-Updated: Sat Feb 13 04:13:34 2010 (+0000)
 ;;           By: James
-;;     Update #: 44
+;;     Update #: 49
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -186,27 +186,42 @@ Based off of `slime-eval-async'."
   "Make buffer with pretty print common lisp eval"
   (with-current-buffer (get-buffer-create "*NISP:EVAL*")
     (erase-buffer)
+    (insert "=== result ===" val "\n")
+    (insert "=== output ===\n" out "\n")
+    (insert "=== error ===\n" err "\n")
+    (insert "=== trace ===\n" trace "\n")
+    (insert "=== input ===\n" in "\n")
     (insert "=== describe ===\n")
     (let ((c 0))
       (mapc (lambda (x)
               (insert "------" (prin1-to-string (incf c)) "-----\n"
                       (nisp-slime-filter-trace-buffer x) "\n"))
             describe))
-    (insert "=== output ===\n" out "\n")
-    (insert "=== error ===\n" err "\n")
-    (insert "=== trace ===\n" trace "\n")
-    (insert "=== input ===\n" in "\n")
-    (insert "=== result ===" val "\n")
     (goto-char (point-min))
     (lisp-mode))
-  (display-buffer "*NISP:EVAL*" t))
+  ;(display-buffer "*NISP:EVAL*" t)
+  )
 
 (defun my-slime-pprint-eval-last-expression-extra (string)
   (interactive (list (slime-last-expression)))
   (slime-eval-async `(nix-emacs::nix-pprint-eval ,string t)
                     (lambda (result)
                       (destructuring-bind (in out err trace val d) result
-                        (make-slime-trace-buffer in out err trace val d)))))
+                        (make-slime-trace-buffer in out err trace val d)
+                        (nisp-print-eos-test-result-summary out)))))
+(defconst nisp-eos-test-result-summary-regexp
+  "Did \\([0-9]+\\).*
+\s+Pass: \\([0-9]+\\).*
+\s+Skip: \\([0-9]+\\).*
+\s+Fail: \\([0-9]+\\).*")
+
+(defun nisp-print-eos-test-result-summary (output-string)
+  (when (string-match nisp-eos-test-result-summary-regexp output-string)
+    (message "::Total: %s ::Pass: %s ::Skip %s ::Fail %s"
+            (match-string 1 output-string)
+            (match-string 2 output-string)
+            (match-string 3 output-string)
+            (match-string 4 output-string))))
 
 (defun my-slime-eval-last-expression (string)
   (interactive (save-current-point
@@ -217,7 +232,9 @@ Based off of `slime-eval-async'."
                       (destructuring-bind (in out err trace val d) result
 ;                        (insert  (replace-regexp-in-string "\\\n" "\n;;=> " val))
                         (make-slime-trace-buffer in out err trace val d)
-                        (message "%s" (substring val 1))))))
+                        (nisp-print-eos-test-result-summary out)
+                        ;(message "%s" (substring val 1))
+))))
 
 (defun my-slime-eval-last-exprssion-into-current-buffer (string)
   "Evalutate the last expression before point.
@@ -236,7 +253,8 @@ results and leaves point at the original place you invoked it."
             (replace-match ""))
           (insert
            (replace-regexp-in-string "\\\n" "\n;;=> " val)
-           "\n"))))))
+           "\n")
+          (nisp-print-eos-test-result-summary out))))))
 
 (defun my-slime-eval-last-exprssion-into-irc (string)
   "Evalutate the last expression before point.
@@ -294,7 +312,8 @@ results and leaves point at the original place you invoked it."
   (slime-eval-async `(nix-emacs::nix-pprint-eval ,string t)
     (lambda (result)
       (destructuring-bind (in out err trace val d) result
-        (message "%s" (substring val 1))))))
+        (or (nisp-print-eos-test-result-summary out)
+            (message "%s" (substring val 1)))))))
 
 (defun nisp-slime-toggle-trace-fdefinition-no-query ()
   "Toggle tracing on the common lisp side.
