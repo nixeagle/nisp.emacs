@@ -1,0 +1,39 @@
+#+TITLE: nisp-org-util
+
+These are general utilities I am in the process of writing. Most of these
+fully intend to provide an interface a common lisp programmer can
+appreciate.
+
+
+* Dictionary
+*** nisp-org-list-all-targets
+*** nisp-org-clock-active-p :clock:predicate:
+*** org-clock-get-clocked-time :clock:
+* Tasks
+*** TODO org-table-map-tables
+    This prints the starting point of every table in an org file.
+    : (org-table-map-tables (lambda () (print (point))))
+
+    We need a prettier interface for this.
+
+*** TODO Get info on org-clock
+
+***** DONE org-clock-get-clocked-time
+      CLOSED: [2010-02-18 Thu 12:03]
+      :LOGBOOK:
+      - State "DONE"       from ""           [2010-02-18 Thu 12:03]
+      :END:
+      This is acceptable, sorta. We only get information on the _current_
+      item, and only in terms of minutes. However this is sufficent for
+      simple programatic access.
+
+***** Write better get-clocked-time
+      org-clock-get-clocked-time has a few issues:
+      - [ ] Resolution is only to the minute, not because its physically
+        impossible to get more accurate time, but because the person who
+        wrote that function thought that nobody would ever want more and
+        divided by 60 then did floor.
+      - [ ] Current one only works with the _current_ clock, no way to
+        look at past clocks, or clocks that are currently inactive but not
+        totally gone. org-clock even keeps a list of these, just no good
+        interface to get at it.
