@@ -8,7 +8,7 @@
 ;; Version:
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 3
+;;     Update #: 4
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -49,6 +49,13 @@
   "Strip all newlines and multiple spaces from N.STRING."
   (replace-regexp-in-string "^\s+\\|\s+$" ""
                             (replace-regexp-in-string "[\s\n]+" " " n.string)))
+
+
+(defun nisp-file-contents->string (n.filespec)
+  "Return N.FILESPEC's contents as a string."
+  (with-temp-buffer
+    (insert-file-contents n.filespec)
+    (buffer-string)))
 
 (provide 'nisp-util)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
