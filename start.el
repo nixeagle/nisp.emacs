@@ -73,7 +73,14 @@ this to the empty list.")
 (nisp-add-to-load-path *nisp-custom-path*)
 (setq custom-file (nisp-make-path "custom/my-custom.el"))
 
-;;; Load this now before any requiring.
+;; This is not a mistake, please read
+;; http://dto.github.com/notebook/require-cl.html
+;;
+;; The emacs policy against this package is absurd and following it this
+;; long has caused me far more pain then gain. Enough is enough.
+(require 'cl)
+
+;;; Load this now before any more requiring.
 (load custom-file)
 
 ;;; Setup the rest of the load paths
