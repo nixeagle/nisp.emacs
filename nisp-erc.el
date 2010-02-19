@@ -8,7 +8,7 @@
 ;; Version: 0.1
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 10
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -89,9 +89,11 @@ IF TARGET is nil and SERVER-NAME is passed, return related server buffer"
                      (string= server-name host)
                      (throw 'info proc))))
             (process-list))
-    nil))				;no match return nil.
+    nil))                               ;no match return nil.
+
 
 (require 'ido)
+(require 'nisp-util)
 (defun nisp-ido-buffer-list-filter-erc ()
   "Show only erc-mode buffers when changing buffers in erc-mode."
   (when (eq major-mode 'erc-mode)
