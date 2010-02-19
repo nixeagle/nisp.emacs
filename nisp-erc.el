@@ -91,6 +91,17 @@ IF TARGET is nil and SERVER-NAME is passed, return related server buffer"
             (process-list))
     nil))				;no match return nil.
 
+(require 'ido)
+(defun nisp-ido-buffer-list-filter-erc ()
+  "Show only erc-mode buffers when changing buffers in erc-mode."
+  (when (eq major-mode 'erc-mode)
+    (setq ido-temp-list
+          (delete-if-not (lambda (buf-string)
+                           "True if BUF-STRING is an erc-mode buffer."
+                           (nisp-buffer-major-mode-p 'erc-mode buf-string))
+                         ido-temp-list))))
+(add-hook 'ido-make-buffer-list-hook 'nisp-ido-buffer-list-filter-erc)
+
 (provide 'nisp-erc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; nisp-erc.el ends here
