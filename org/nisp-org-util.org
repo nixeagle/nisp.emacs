@@ -9,6 +9,8 @@ appreciate.
 *** nisp-org-list-all-targets
 *** nisp-org-clock-active-p :clock:predicate:
 *** org-clock-get-clocked-time :clock:
+*** nisp-buffer-major-mode
+*** nisp-buffer-major-mode-p
 * Tasks
 *** TODO org-table-map-tables
     This prints the starting point of every table in an org file.
