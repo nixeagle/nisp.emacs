@@ -8,7 +8,7 @@
 ;; Version:
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 5
 ;; URL:
 ;; Keywords:
 ;; Compatibility:
@@ -56,6 +56,12 @@
   (with-temp-buffer
     (insert-file-contents n.filespec)
     (buffer-string)))
+
+(defun* nisp-buffer-major-mode (&optional (buffer-or-name (current-buffer)))
+  (buffer-local-value 'major-mode (get-buffer buffer-or-name)))
+(defun* nisp-buffer-major-mode-p (major-mode-symbol
+                                  &optional (buffer-or-name (current-buffer)))
+  (eq major-mode-symbol (nisp-buffer-major-mode buffer-or-name)))
 
 (provide 'nisp-util)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
