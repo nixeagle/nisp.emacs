@@ -68,6 +68,17 @@ return nil the paste is not done."
   :options '(nisp-paste-confirm-irc-paste)
   :group 'nisp-paste)
 
+(defcustom nisp-paste-send-functions '()
+  "Called before a paste is made.
+
+The single argument given is the paste url. If any of these
+return nil the paste is not done."
+  :type '(hook)
+  :package-version '(nisp-paste . 0.7.0)
+  :options '(nisp-paste-send-to-erc
+             nisp-paste-to-kill-ring)
+  :group 'nisp-paste)
+
 (defcustom nisp-paste-url-space-char "-"
   "Spaces in paste filenames are replaced with this character.
 
@@ -124,6 +135,15 @@ FUNCTIONS defaults to `nisp-paste-format-filename-functions'."
   (y-or-n-p (format "Putting link %s into channel %s? "
                     url (buffer-name (car (erc-buffer-list nil))))))
 
+(defun nisp-paste-send-to-erc (url msg a.html-buffer file)
+  (nisp-write-buffer-to-file a.html-buffer file)
+  (nisp-erc-send-message
+   (buffer-name (car (erc-buffer-list nil)))
+   (concat "See " url (or msg " - " msg))))
+
+(defun nisp-paste-to-kill-ring (url msg a.html-buffer file)
+  (kill-new url))
+
 (defun nisp-paste-region (beg end name msg)
   "Paste region."
   (interactive "r\nsPaste Name:\nsMessage:")
@@ -134,10 +154,11 @@ FUNCTIONS defaults to `nisp-paste-format-filename-functions'."
       (print url)
       (when (run-hook-with-args-until-failure 'nisp-paste-pre-paste-functions
                                               url)
-        (nisp-write-buffer-to-file html-buffer file)
-        (nisp-erc-send-message
-         (buffer-name (car (erc-buffer-list nil)))
-         (concat "See " url (or msg " - " msg)))))))
+        (run-hook-with-args nisp-paste-send-functions
+                            url msg html-buffer file)))))
 
+(defun nisp-paste-region-to-target (beg end name target)
+  "paste region to a specific channel"
+  (interactive "r\nsPaste Name:\nsMessage:"))
 
 (provide 'nisp-paste)
