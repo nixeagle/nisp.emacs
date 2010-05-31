@@ -17,7 +17,21 @@
   (my-slime-async-eval ex nil
                      (lambda (in out value)
                        (erc-send-message
-                        (format "%s --> %s" in value)))))
+                        (format "%s --> %s" in
+                                (replace-regexp-in-string
+                                 "[ \n]+" " " value))))))
 (put 'erc-cmd-L 'do-not-parse-args t)
 
+(defun erc-cmd-EEVAL (&rest expression)
+  "evaluate given lisp expression."
+  (let* ((expr (mapconcat 'identity expression " "))
+         (result (condition-case err
+                     (eval (read-from-whole-string expr))
+                   (error (format "ERROR: %S" error)))))
+    (erc-send-message (format "%s ---> %S" expr result))))
+(defalias 'erc-cmd-E 'erc-cmd-EEVAL)
+
+
+(defun erc-cmd-R (input) (erc-send-message (org-babel-reverse-string input)))
+(put 'erc-cmd-R 'do-not-parse-args t)
 (provide 'nisp-erc-cmd)
